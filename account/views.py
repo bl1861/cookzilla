@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.db import connection
 
 def profile(request):
 	# if the user is not login, redirect to login page
@@ -25,7 +26,12 @@ def events(request):
 		return HttpResponseRedirect(reverse("login"))
 
 	context = {'login': True}
-	return render(request, 'account/events.html', context)
+	cursor = connection.cursor()
+	cursor.execute("SELECT event.eid, event.ename, event.etime FROM event")
+	rows = cursor.fetchone()
+
+	passin = {'eid':str(rows[0]),'ename':rows[1],'etime':rows[2]}
+	return render(request, 'account/events.html', passin)
 
 
 def rsvps(request):
@@ -41,4 +47,6 @@ def reviews(request):
 
 	context = {'login': True}
 	return render(request, 'account/reviews.html', context)
+
+
 
