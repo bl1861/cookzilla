@@ -20,8 +20,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('main.urls')),
     url(r'^account/', include('account.urls')),
+    url(r'^db/', include('db.urls')),
     url(r'^recipe/', include('recipe.urls')),
     url(r'^group/', include('group.urls')),
     url(r'^event/', include('event.urls')),
-
 ]
