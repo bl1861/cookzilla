@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Cookzilla</title>
+	<meta charset="utf-8" />
+
+	<!-- This line tell django to prepare to load staic files. we only need to call it one time in the header  -->
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}" type = "text/css"/>
+	<link rel="stylesheet" href="{% static 'main/css/login.css' %}" type = "text/css"/>
+  <link rel="stylesheet" href="{% static 'main/css/profile.css' %}" type = "text/css"/>
+
+  <style type="text/css">
+		html,
+		body {
+		  height:100%
+		}
+	</style>
+</head>
+
+<body class="body" style="background-color:#f6f6f6" data-gr-c-s-loaded="true">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'home' %}">CookZilla</a>
+        </div>
+        <div class="navbar-form navbar-right">
+        	<a class="btn btn-success" href="{% url 'login' %}" role="button">Sign in</a>
+        	<a class="btn btn-primary" href="#" role="button">Sign up</a>
+          <a class="btn btn-danger" href="{% url 'logout' %}" role="button">Sign out</a>
+          <a class="btn btn-info" href="{% url 'profile' %}" role="button">Account</a>
+	    </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+    {% block content %}
+	  {% endblock %} 
+
+</body>
+
+
