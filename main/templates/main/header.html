@@ -27,10 +27,15 @@
           <a class="navbar-brand" href="{% url 'home' %}">CookZilla</a>
         </div>
         <div class="navbar-form navbar-right">
+          {% if not login %}
         	<a class="btn btn-success" href="{% url 'login' %}" role="button">Sign in</a>
         	<a class="btn btn-primary" href="#" role="button">Sign up</a>
-          <a class="btn btn-danger" href="{% url 'logout' %}" role="button">Sign out</a>
+          {% endif %}
+
+          {% if login %}
           <a class="btn btn-info" href="{% url 'profile' %}" role="button">Account</a>
+          <a class="btn btn-danger" href="{% url 'logout' %}" role="button">Sign out</a>
+          {% endif %}
 	    </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">

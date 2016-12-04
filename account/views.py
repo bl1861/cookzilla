@@ -7,30 +7,38 @@ def profile(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	return render(request, 'account/profile.html')
+	# login is used to show login-layout
+	context = {'login': True}
+	return render(request, 'account/profile.html', context)
+
 
 def groups(request):
-	# if the user is not login, redirect to login page
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
-	return render(request, 'account/groups.html')
+
+	context = {'login': True}
+	return render(request, 'account/groups.html', context)
+
 
 def events(request):
-
-	# if the user is not login, redirect to login page
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
-	return render(request, 'account/events.html')
+
+	context = {'login': True}
+	return render(request, 'account/events.html', context)
+
 
 def rsvps(request):
-	# if the user is not login, redirect to login page
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
-	return render(request, 'account/RSVPs.html')
+
+	context = {'login': True}
+	return render(request, 'account/RSVPs.html', context)
 
 def reviews(request):
-	# if the user is not login, redirect to login page
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
-	return render(request, 'account/reviews.html')
+
+	context = {'login': True}
+	return render(request, 'account/reviews.html', context)
 

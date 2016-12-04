@@ -3,7 +3,64 @@
 {% block content %}
 <div class="jumbotron">
 	<div class="container">
-		<h2>Welcome to Cookzilla</h2>
+		{% if login %}
+			<h2>Hello {{ username }}, Welcome to CookZilla!</h2>
+		{% endif %}
+
+        <h2 class="page-header">Top Recipes </h2>
+		<section>
+			<div class="row placeholders">
+	            <div class="col-xs-6 col-sm-4 placeholder">
+	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+	              <h4>Label</h4>
+	              <span class="text-muted">Something else</span>
+	            </div>
+	            <div class="col-xs-6 col-sm-4 placeholder">
+	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+	              <h4>Label</h4>
+	              <span class="text-muted">Something else</span>
+	            </div>
+	            <div class="col-xs-6 col-sm-4 placeholder">
+	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+	              <h4>Label</h4>
+	              <span class="text-muted">Something else</span>
+	            </div>
+	            <div class="col-xs-6 col-sm-4 placeholder">
+	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+	              <h4>Label</h4>
+	              <span class="text-muted">Something else</span>
+	            </div>
+	          </div>
+		</section>
+		
+		{% if login %}
+		<section>
+        	<h2 class="page-header">History</h2>
+			<div class="row placeholders">
+	            <div class="col-xs-6 col-sm-4 placeholder">
+	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+	              <h4>Label</h4>
+	              <span class="text-muted">Something else</span>
+	            </div>
+	            <div class="col-xs-6 col-sm-4 placeholder">
+	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+	              <h4>Label</h4>
+	              <span class="text-muted">Something else</span>
+	            </div>
+	            <div class="col-xs-6 col-sm-4 placeholder">
+	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+	              <h4>Label</h4>
+	              <span class="text-muted">Something else</span>
+	            </div>
+	            <div class="col-xs-6 col-sm-4 placeholder">
+	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+	              <h4>Label</h4>
+	              <span class="text-muted">Something else</span>
+	            </div>
+	        </div>	
+		</section>	
+		{% endif %}	
+
 	</div>
-</dov
+</div>
 {% endblock %}

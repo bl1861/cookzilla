@@ -5,8 +5,12 @@ from django.urls import reverse
 
 
 def home(request):
-	# render will go to 'templates' folder, and look for 'home/home.html'
-	# notice: we should create 'home' folder in current folder. It avoids filename collision
+	context = {'login': False}
+	if 'username' in request.session:
+		context['login'] = True
+		context['username'] = request.session['username']
+		return render(request, 'main/home.html', context);
+
 	return render(request, 'main/home.html')
 
 
@@ -26,8 +30,6 @@ def login(request):
 			return HttpResponseRedirect(reverse("home"))
 
 	return render(request, 'main/login.html')
-	# return HttpResponse("<h2>HEY! This is Login page.</h2>")
-
 
 
 def logout(request):
