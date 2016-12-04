@@ -27,6 +27,8 @@ def create_mydb(request):
 
     groupUser=GroupUser(gid=group,uname=User.objects.get(uname='Jack Smith'))
     groupUser.save()
+    groupUser=GroupUser(gid=group,uname= User.objects.get(uname='Rubby'))
+    groupUser.save()
 
     e_dummy = Event.objects.get(eid=1)
 
@@ -105,9 +107,11 @@ def search_3(request):
 def insert_1(request):
 
     result = ''
-    with connection.cursor() as cursor:
-        cursor.execute("INSERT INTO _User VALUES ( 'Bob','bb', '3456', 'nothing to say')")
-        rows = cursor.fetchall()
+    groupUser = GroupUser.objects.get(uname='Rubby')
+
+    cursor1 = connection.cursor()
+    cursor1.execute("select uname from group_user")
+    rows = cursor1.fetchall()
     for row in rows:
         result += str(row[0]) + '<br>'
 

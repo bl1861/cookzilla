@@ -2,15 +2,26 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.db import connection
+from django.core import serializers
+from .models import Event
 
 def profile(request):
 	# if the user is not login, redirect to login page
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	# login is used to show login-layout
-	context = {'login': True}
-	return render(request, 'account/profile.html', context)
+
+	# query from db
+	cursor = connection.cursor()
+	cursor.execute("SELECT group_user.uname from _user inner join group_user on _user.uname = group_user.uname where _user.uname = 'Rubby'")
+	rows = cursor.fetchall()
+
+	data = serializers.serialize("json", Event.objects.all())
+	context = {'groups':data}
+	#for row in rows:
+	#	context['groups'].append(row)
+
+	return render(request, 'account/profile.html', json.loads(context))
 
 
 def groups(request):

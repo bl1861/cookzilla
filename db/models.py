@@ -49,7 +49,7 @@ class Event(models.Model):
 
 class GroupUser(models.Model):
     gid = models.ForeignKey(Egroup, models.DO_NOTHING, db_column='gid',related_name='group_gid')
-    uname = models.CharField(max_length=50)
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='group_user_uname', blank=True, null=True)
 
     class Meta:
         db_table = 'group_user'

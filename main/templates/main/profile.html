@@ -1,10 +1,12 @@
-{% extends "account/dashboard.html" %}
+{% extends "main/header.html" %}
 
 {% block content %}
 <div class="jumbotron">
 	<div class="container">
+		{% if login %}
+			<h2>Hello {{ username }}, Welcome to CookZilla!</h2>
+		{% endif %}
 
-		<h2>Hello {{ username }}, Welcome to CookZilla!</h2>
         <h2 class="page-header">Profile </h2>
 		<section>
 			<div class="row placeholders">
@@ -15,20 +17,11 @@
 	            </div>
 			</div>
 		</section>
+		
+		{% if login %}
 
-		<section>
-			{% for obj in groups %}
-			    <p>{{obj.model}}</p>
-			{% endfor %}
-		</section>
+		{% endif %}	
+
 	</div>
 </div>
 {% endblock %}
-
-{% block detail %}
-	<h2>uid: {{ uid }}</h2>
-	<h2>username: {{ username }}</h2>
-	<h2>password: {{ password }}</h2>
-	<h2>country: {{ country }}</h2>
-{% endblock %}
-

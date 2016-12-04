@@ -44,3 +44,4 @@ def logout(request):
 		request.session.pop('username')
 
 	return render(request, 'main/logout.html')
+
