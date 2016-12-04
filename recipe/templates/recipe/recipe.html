@@ -1,0 +1,35 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+<div class="jumbotron">
+	<div class="container">
+		<h2>This is Recipe page!</h2><br>
+
+		<!-- Recipe Info -->
+
+		<section>
+			<h2 class="page-header">Recipe Information: </h2>
+			<p>Time: </p>
+			<p>Members: </p>
+			<p>Description: </p>
+		</section>
+
+		<!-- Reviews from users -->
+		<section>
+			<h2 class="page-header">Reviews: </h2>
+			<p>Review1</p>
+			<p>Review2</p>
+			<p>Review3</p>
+		</section>
+		<section>
+			<h2 class="page-header">Related: </h2>
+			<a href="#"><p>Related1</p></a>
+			<a href="#"><p>Related2</p></a>
+			<a href="#"><p>Related3</p></a>
+		</section>
+
+		<a class="btn btn-lg btn-success" href="{% url 'home' %}" role="button">Home</a>
+
+	</div>
+</div>
+{% endblock %}
