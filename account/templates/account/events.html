@@ -1,8 +1,16 @@
 {% extends "account/dashboard.html" %}
 
 {% block detail %}
-	<h2>event id: {{ eid }}</h2>
-	<h2>event name: {{ ename }}</h2>
-	<h2>event time: {{ etime }} <h2>
+
+	<div class="list-group">
+		{% for obj in event %}
+		<a href="#" class="list-group-item">{{obj}}</a>
+		{% endfor %}
+
+	</div>
+
 {% endblock %}
 
+	<h2>event id: {{ eid }}</h2>
+	<h2>event name: {{ ename }}</h2>
+	<h2>event time: {{ etime }} </h2>

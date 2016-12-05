@@ -28,7 +28,7 @@ def login(request):
 
 			user = form.cleaned_data.get('username')
 			pw = form.cleaned_data.get('password')
-			dbuser = User.objects.filter(login_name = user,password=pw)
+			dbuser = User.objects.filter(uname = user,password=pw)
 
 			if dbuser:
 				print(form.cleaned_data.get('username'))
@@ -44,4 +44,10 @@ def logout(request):
 		request.session.pop('username')
 
 	return render(request, 'main/logout.html')
+
+
+def signup(request):
+	return render(request, 'main/signup.html')
+
+
 

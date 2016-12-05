@@ -1,7 +1,15 @@
 {% extends "account/dashboard.html" %}
 
 {% block detail %}
+
+	<div class="list-group">
+		{% for obj in ename %}
+		<a href="#" class="list-group-item">{{obj}}</a>
+		{% endfor %}
+	</div>
+
+{% endblock %}
+
 	<h2>RSVP id: {{ rsvp_id }}</h2>
 	<h2>RSVP event: {{ eid }}</h2>
-{% endblock %}
 

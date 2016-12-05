@@ -104,15 +104,80 @@ def search_3(request):
 
     return HttpResponse(result)
 
-def insert_1(request):
+def search_4(request):
 
     result = ''
-    groupUser = GroupUser.objects.get(uname='Rubby')
-
-    cursor1 = connection.cursor()
-    cursor1.execute("select uname from group_user")
-    rows = cursor1.fetchall()
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT distinct Recipe.rid , Recipe.rtitle FROM Tag INNER JOIN Recipe on Tag.rid=Recipe.rid INNER JOIN Ingredient on Ingredient.rid=Recipe.rid INNER JOIN Conversion on Ingredient.cunit = Conversion.cunit WHERE Tag.tname ='cake' and Ingredient.iname LIKE '%suger%' and ((Ingredient.quantity)*(Conversion.cquantity)/Recipe.rserving) > 20")
+        rows = cursor.fetchall()
     for row in rows:
-        result += str(row[0]) + '<br>'
+        result += str(row[0])+' : ' + row[1]+'<br>'
+
+    return HttpResponse(result)
+
+def search_5(request):
+
+    result = ''
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT t1.r1, t1.avg_r FROM(SELECT Recipe.rid as r1, avg(Review.rating) as avg_r FROM Recipe INNER JOIN Review on Recipe.rid=Review.rid WHERE Recipe.rcontent ~* '[\s]tuna[\s]' GROUP BY Recipe.rid) as t1 ORDER BY t1.avg_r DESC")
+        rows = cursor.fetchall()
+    for row in rows:
+        result += str(row[0])+' : ' + str(int(row[1])) + '<br>'
+
+    return HttpResponse(result)
+
+def update(request):
+
+    cursor = connection.cursor()
+    '''cursor.execute("INSERT INTO _User VALUES ( 'K.Smith', 'smith', '23456', 'good')")
+    cursor.execute("INSERT INTO _User VALUES ( 'Bob','bb', '3456', 'nothing to say')")
+    cursor.execute("INSERT INTO _User VALUES ( 'Michael Jack', 'Michael', '87654', 'I like to cook!')")
+    cursor.execute("CREATE SEQUENCE serial_rr START 3")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'cheese cake','Preheat oven to 325 degrees. For the filling, use your mixers lowest speed',2,'K.Smith')")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'apple pie','Make the dough by hand. In a medium bowl, whisk together the flour, sugar, and salt',3,'Michael Jack')")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'fried noodle','Bring a large pot of lightly salted water to a boil. Cook the egg noodles in the boiling water until the pasta is tender yet firm to the bite, about 5 minutes. Drain',2,'Bob')")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'beef pasta','Cook over medium heat for 5 minutes to slightly reduce. Add chopped spinach; cover skillet and simmer on reduced heat until spinach is tender',5,'Rubby')")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'beef pasta','Use broccoli to make this pasta more delicious',5,'Rubby')")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'Tuna Patties','These tuna patties is special!',5,'Bob')")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'Grandma’s Fettuccini Alfredo','If you sift a little bit of cornstarch into your shredded cheese, and squeeze some fresh lemon juice into the sauce,it will become nice and creamy',5,'Michael Jack')")
+    cursor.execute("INSERT INTO Tag VALUES(2,'dessert',2)")
+    cursor.execute("INSERT INTO Tag VALUES(3,'cake',2)")
+    cursor.execute("INSERT INTO Tag VALUES(4,'low fat',2)")
+    cursor.execute("INSERT INTO Tag VALUES(5,'dessert',3)")
+    cursor.execute("INSERT INTO Tag VALUES(6,'Vegan',3)")
+    cursor.execute("INSERT INTO Tag VALUES(7,'low fat',3)")
+    cursor.execute("INSERT INTO Tag VALUES(8,'beef',4)")
+    cursor.execute("INSERT INTO Tag VALUES(9,'Asian',4)")
+    cursor.execute("INSERT INTO Tag VALUES(10,'Italian',5)")
+    cursor.execute("INSERT INTO Tag VALUES(11,'Healthy',5)")
+    cursor.execute("INSERT INTO Tag VALUES(12,'Quick meal',5)")
+    cursor.execute("INSERT INTO Tag VALUES(13,'Italian',6)")
+    cursor.execute("INSERT INTO Ingredient VALUES(2,'cream',50.0,'ml',60.0,1)")
+    cursor.execute("INSERT INTO Ingredient VALUES(3,'eggs',2.0,'pc',5.0,1)")
+    cursor.execute("INSERT INTO Ingredient VALUES(4,'butter',30.0,'grams',30.0,1)")
+    cursor.execute("INSERT INTO Ingredient VALUES(5,'butter',30.0,'grams',30.0,1)")
+    cursor.execute("INSERT INTO Ingredient VALUES(6,'suger',200.0,'grams',200.0,2)")
+    cursor.execute("INSERT INTO Ingredient VALUES(7,'butter',40.0,'grams',40.0,2)")
+    cursor.execute("INSERT INTO Ingredient VALUES(8,'apple',3.0,'pc',7.5,3)")
+    cursor.execute("INSERT INTO Ingredient VALUES(9,'eggs',1.0,'pc',2.5,3)")
+    cursor.execute("UPDATE Conversion set cquantity=1.2 where cunit='ml'")
+    cursor.execute("INSERT INTO Conversion VALUES('pc',2.5)")
+    cursor.execute("INSERT INTO Conversion VALUES('grams',1)")
+    cursor.execute("INSERT INTO Review VALUES(2,'Bob','convenient recipe','eaasy and quick',5,6)")
+    cursor.execute("INSERT INTO Review VALUES(3,'Bob','special choice','I like this elegant recipe',5,8)")
+    cursor.execute("INSERT INTO Review VALUES(4,'K.Smith','good choice for dinner','I have been making homemade pasta for years. If I am going to be serving it the same day, I use cake flour.','like it',4,6)")
+    cursor.execute("update Review set suggestion='good',rating=5,rid=6 where rwid=2")
+    cursor.execute("update Review set suggestion='verygood',rating=5,rid=8 where rwid=3")
+    cursor.execute("update recipe set rcontent='Use broccoli to make this pasta more delicious, adding some tuna is also recommend' where rid=6")
+    cursor.execute("update egroup set gname='health diet' where gid=2")
+    cursor.execute("update egroup set gname='Love cheese cake !' where gid=3")
+    cursor.execute("update event set ename='how to cook effecienty',etime='2016-10-09 14:00:00' where eid=2")
+    cursor.execute("update event set ename='new recipe for cake',etime='2016-10-09 11:12:00' where eid=3")'''
+
+    cursor.execute("INSERT INTO rsvp VALUES(2,1,'Rubby')")
+    cursor.execute("INSERT INTO rsvp VALUES(3,2,'Rubby')")
+    cursor.execute("INSERT INTO rsvp VALUES(4,3,'Rubby')")
+
+    result = 'update db successfully'
 
     return HttpResponse(result)

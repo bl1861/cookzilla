@@ -11,15 +11,16 @@ def profile(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
+	#get username login name
 	client= request.session['username']
 
 	# query from db
 	cursor = connection.cursor()
-	cursor.execute("SELECT * from _user where login_name='"+client+"'")
+	cursor.execute("SELECT * from _user where uname='"+client+"'")
 	# list of tuples
 	row = cursor.fetchone()
-	print(type(row[0]))
 
+	#get user information
 	context = {'uname':row[0],'login_name':row[1],'udescription':row[3]}
 	'''for row in rows:
 		context['groups'] = row[0]'''
@@ -30,7 +31,19 @@ def groups(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'login': True}
+	context = {'gname': []}
+
+	#get username login name
+	client= request.session['username']
+
+	# query from db
+	cursor = connection.cursor()
+	cursor.execute("SELECT t3.gname from group_user as t1 inner join _user as t2 on t1.uname=t2.uname inner join egroup as t3 on t1.gid=t3.gid where t2.uname='"+client+"'")
+
+	# iterate of gname
+	rows = cursor.fetchall()
+	for row in rows:
+		context['gname'].append(row[0])
 	return render(request, 'account/groups.html', context)
 
 
@@ -38,20 +51,37 @@ def events(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'login': True}
-	cursor = connection.cursor()
-	cursor.execute("SELECT event.eid, event.ename, event.etime FROM event")
-	rows = cursor.fetchone()
+	context = {'event': []}
+	client= request.session['username']
 
-	passin = {'eid':str(rows[0]),'ename':rows[1],'etime':rows[2]}
-	return render(request, 'account/events.html', passin)
+	# query from db
+	cursor = connection.cursor()
+	cursor.execute("SELECT e.ename from (SELECT t3.gid from group_user as t1 inner join _user as t2 on t1.uname=t2.uname inner join egroup as t3 on t1.gid=t3.gid where t2.uname='"+client+"') as g inner join event as e on g.gid=e.gid")
+
+	# iterate of event
+	rows = cursor.fetchall()
+
+	for row in rows:
+		context['event'].append(row[0])
+	return render(request, 'account/events.html', context)
 
 
 def rsvps(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'login': True}
+	context = {'ename': []}
+	client= request.session['username']
+
+	# query from db
+	cursor = connection.cursor()
+	cursor.execute("SELECT distinct e.ename from _user as u inner join rsvp as r on u.uname=r.uname inner join event as e on r.eid=e.eid WHERE u.uname='"+client+"'")
+
+	# iterate of ename
+	rows = cursor.fetchall()
+	for row in rows:
+		context['ename'].append(row[0])
+
 	return render(request, 'account/RSVPs.html', context)
 
 def reviews(request):
