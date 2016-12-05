@@ -6,6 +6,12 @@ from django.core import serializers
 from .models import Event
 import json
 
+
+# Abstract:
+# Each function check if the username is in session, if not, redirect to login page.
+# Each function put the 'account_item' in 'context' to show the title of the page
+#
+
 def profile(request):
 	# if the user is not login, redirect to login page
 	if 'username' not in request.session:
@@ -20,7 +26,7 @@ def profile(request):
 	row = cursor.fetchone()
 	print(type(row[0]))
 
-	context = {'uname':row[0],'login_name':row[1],'udescription':row[3]}
+	context = {'account_item': 'My Profile', 'uname':row[0],'login_name':row[1],'udescription':row[3]}
 	'''for row in rows:
 		context['groups'] = row[0]'''
 	return render(request, 'account/profile.html', context)
@@ -30,7 +36,7 @@ def groups(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'login': True}
+	context = {'account_item': 'Groups', 'login': True}
 	return render(request, 'account/groups.html', context)
 
 
@@ -42,7 +48,7 @@ def events(request):
 	cursor.execute("SELECT event.eid, event.ename, event.etime FROM event")
 	rows = cursor.fetchone()
 
-	context = {'login': True, 'eid':str(rows[0]),'ename':rows[1],'etime':rows[2]}
+	context = {'account_item': 'Events', 'login': True, 'eid':str(rows[0]),'ename':rows[1],'etime':rows[2]}
 	return render(request, 'account/events.html', context)
 
 
@@ -50,15 +56,24 @@ def rsvps(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'login': True}
+	context = {'account_item': 'RSVPs', 'login': True}
 	return render(request, 'account/RSVPs.html', context)
 
 def reviews(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'login': True}
+	context = {'account_item': 'Reviews', 'login': True}
 	return render(request, 'account/reviews.html', context)
+
+def recipes(request):
+	if 'username' not in request.session:
+		return HttpResponseRedirect(reverse("login"))
+
+	context = {'account_item': 'Recipes', 'login': True}
+	return render(request, 'account/recipes.html', context)
+
+
 
 
 
