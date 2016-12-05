@@ -11,17 +11,18 @@ def profile(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
+	client= request.session['username']
 
 	# query from db
 	cursor = connection.cursor()
-	cursor.execute("SELECT group_user.uname from _user inner join group_user on _user.uname = group_user.uname where _user.uname = 'Rubby'")
-	rows = cursor.fetchall()
-	print(rows)
-	data = serializers.serialize("json", Event.objects.all())
-	context = {'groups':rows}
-	#for row in rows:
-	#	context['groups'].append(row)
+	cursor.execute("SELECT * from _user where login_name='"+client+"'")
+	# list of tuples
+	row = cursor.fetchone()
+	print(type(row[0]))
 
+	context = {'uname':row[0],'login_name':row[1],'udescription':row[3]}
+	'''for row in rows:
+		context['groups'] = row[0]'''
 	return render(request, 'account/profile.html', context)
 
 
