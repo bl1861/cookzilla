@@ -1,9 +1,27 @@
 {% extends "account/dashboard.html" %}
 
 {% block detail %}
-	<h2>uid: {{ uid }}</h2>
-	<h2>username: {{ username }}</h2>
-	<h2>password: {{ password }}</h2>
-	<h2>country: {{ country }}</h2>
+
+	<div class="jumbotron">
+		<div class="container">
+			<h2>Hello {{ username }}, Welcome to CookZilla!</h2>
+	        <h2 class="page-header">Profile </h2>
+			<section>
+				<div class="row placeholders">
+		            <div class="col-xs-6 col-sm-4 placeholder">
+		              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+		              <h4>Photo</h4>
+		              <span class="text-muted"></span>
+		            </div>
+				</div>
+			</section>
+
+		</div>
+	</div>
+
+	<h2>username: {{ uname }}</h2>
+	<h2>login_name: {{ login_name }}</h2>
+	<h2>udescription: {{ udescription }}</h2>
+>>>>>>> f46051212db24a8d89a0b2a471c933e5fd8a6a9e
 {% endblock %}
 
