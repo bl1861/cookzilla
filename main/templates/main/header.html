@@ -41,7 +41,7 @@
         <div class="navbar-form navbar-right">
           {% if not login %}
         	<a class="btn btn-success" href="{% url 'login' %}" role="button">Sign in</a>
-        	<a class="btn btn-primary" href="#" role="button">Sign up</a>
+        	<a class="btn btn-primary" href="{% url 'signup'%}" role="button">Sign up</a>
           {% endif %}
 
           {% if login %}

@@ -10,18 +10,16 @@ def profile(request):
 	# if the user is not login, redirect to login page
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
-
-
 	# query from db
-	cursor = connection.cursor()
-	cursor.execute("SELECT group_user.uname from _user inner join group_user on _user.uname = group_user.uname where _user.uname = 'Rubby'")
-	rows = cursor.fetchall()
-	print(rows)
-	data = serializers.serialize("json", Event.objects.all())
-	context = {'groups':rows}
+	# cursor = connection.cursor()
+	# cursor.execute("SELECT group_user.uname from _user inner join group_user on _user.uname = group_user.uname where _user.uname = 'Rubby'")
+	# rows = cursor.fetchall()
+	# print(rows)
+	# data = serializers.serialize("json", Event.objects.all())
+	# context = {'groups':rows}
 	#for row in rows:
 	#	context['groups'].append(row)
-
+	context = {'login': True}
 	return render(request, 'account/profile.html', context)
 
 

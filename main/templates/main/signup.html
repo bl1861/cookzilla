@@ -1,0 +1,33 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+<div class="jumbotron">
+	<div class="container">
+		<form class="form-signup" method="POST" action=""> {% csrf_token %}
+		  <h2 class="form-head">Register</h2>
+		  <div class="form-group">
+		    <label for="signup_username">Username</label>
+		    <input type="text" class="form-control" id="signup_username" placeholder="Example input" name="signup_username">
+		  </div>
+		  <div class="form-group">
+		    <label for="signup_password">Password</label>
+		    <input type="text" class="form-control" id="signup_password" placeholder="Another input" name="signup_password">
+		  </div>
+		  <div class="form-group">
+		    <label for="signup_nickname">NickName</label>
+		    <input type="text" class="form-control" id="signup_nickname" placeholder="Example input" name="signup_nickname">
+		  </div>
+		  <div class="form-group">
+		    <label for="signup_desc">Description</label>
+		    <textarea class="form-control" id="signup_desc" rows="3" name="signup_desc"></textarea>
+		  </div>
+		  <div class="form-group">
+		    <label for="signup_file">File input</label>
+		    <input type="file" class="form-control-file" id="signup_file" aria-describedby="fileHelp" name="signup_file">
+		    <small id="fileHelp" class="form-text text-muted">Upload a file about youself!</small>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>
+{% endblock %}
