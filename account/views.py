@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.db import connection
 from django.core import serializers
 from .models import Event
+import json
 
 def profile(request):
 	# if the user is not login, redirect to login page
@@ -15,13 +16,13 @@ def profile(request):
 	cursor = connection.cursor()
 	cursor.execute("SELECT group_user.uname from _user inner join group_user on _user.uname = group_user.uname where _user.uname = 'Rubby'")
 	rows = cursor.fetchall()
-
+	print(rows)
 	data = serializers.serialize("json", Event.objects.all())
-	context = {'groups':data}
+	context = {'groups':rows}
 	#for row in rows:
 	#	context['groups'].append(row)
 
-	return render(request, 'account/profile.html', json.loads(context))
+	return render(request, 'account/profile.html', context)
 
 
 def groups(request):
