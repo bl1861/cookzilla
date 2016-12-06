@@ -2,12 +2,40 @@
 
 {% block detail %}
 
-	<div class="list-group">
-		{% for obj in gname %}
-		<a href="#" class="list-group-item">{{obj}}</a>
-		{% endfor %}
+	<section>
+		<h2 class="page-header">Group1 Title: </h2>
+		<div class="margin-bottom">
+			<h3>event 1</h3>
+			<h4>Content is here!</h4>
+		</div>
+		<div class="margin-bottom">
+			<h3>event2</h3>
+			<h4>Content is here!</h4>
+		</div>
+	</section>
 
-	</div>
+	<section>
+		<h2 class="page-header">Group2 Title: </h2>
+		<div class="margin-bottom">
+			<h3>event 1</h3>
+			<h4>Content is here!</h4>
+		</div>
+		<div class="margin-bottom">
+			<h3>event2</h3>
+			<h4>Content is here!</h4>
+		</div>
+	</section>
+
+	<section>
+		<form method="POST" action=""> {% csrf_token %}
+		  <h3 class="form-head">Create new Group</h3>
+		  <div class="form-text">
+		    <label for="signup_username">Group name</label>
+		    <input type="text" class="form-control margin-bottom" id="signup_username" placeholder="Example input" name="signup_username">
+     		<button type="submit" class="btn btn-primary">Submit</button>
+		  </div>
+		</form>
+	</section>
 
 {% endblock %}
 

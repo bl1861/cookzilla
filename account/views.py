@@ -27,7 +27,7 @@ def profile(request):
 	row = cursor.fetchone()
 
 
-	context = {'account_item': 'My Profile', 'uname':row[0],'login_name':row[1],'udescription':row[3]}
+	context = {'account_item': 'My Profile', 'login': True, 'uname':row[0],'login_name':row[1],'udescription':row[3]}
 
 	'''for row in rows:
 		context['groups'] = row[0]'''
@@ -38,7 +38,7 @@ def groups(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'account_item': 'Groups', 'gname': []}
+	context = {'account_item': 'Groups', 'login': True, 'gname': []}
 
 	#get username login name
 	client= request.session['username']
@@ -59,7 +59,7 @@ def events(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'account_item': 'Events', 'event': []}
+	context = {'account_item': 'Events', 'login': True, 'event': []}
 	client= request.session['username']
 
 	# query from db
@@ -79,7 +79,7 @@ def rsvps(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'account_item': 'Events', 'ename': []}
+	context = {'account_item': 'Events', 'login': True, 'ename': []}
 	client= request.session['username']
 
 	# query from db

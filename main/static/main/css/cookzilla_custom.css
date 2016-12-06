@@ -21,8 +21,13 @@ button.btn.dropdown-toggle.btn-default {
 .form-report {
 	font-size: 1.7rem;
 }
-.form-text {
+.form-textarea {
 	width: 700px;
+	height: 100px;
+}
+
+.form-text {
+	width: 300px;
 	height: 100px;
 }
 

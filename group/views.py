@@ -14,12 +14,3 @@ def group(request, id):
 		context['login'] = True
 	return render(request, 'group/group.html', context)
 
-def new_group(request):
-	# if the user is not login, redirect to login page
-	if 'username' not in request.session:
-		return HttpResponseRedirect(reverse("login"))
-
-	context = {'login': True}
-	return render(request, 'group/new_group.html', context)
-
-
