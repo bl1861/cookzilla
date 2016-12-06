@@ -12,4 +12,4 @@ def event(request, id):
 	context = {'login': False}
 	if 'username' in request.session:
 		context['login'] = True
-	return render(request, 'event/event.html', context)
+	return render(request, 'event/event_detail.html', context)
