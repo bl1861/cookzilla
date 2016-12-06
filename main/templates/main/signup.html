@@ -3,7 +3,7 @@
 {% block content %}
 <div class="jumbotron">
 	<div class="container">
-		<form class="form-signup" method="POST" action=""> {% csrf_token %}
+		<form enctype="multipart/form-data" class="form-signup" method="POST" action=""> {% csrf_token %}
 		  <h2 class="form-head">Register</h2>
 		  <div class="form-group">
 		    <label for="signup_username">Username</label>

@@ -6,6 +6,12 @@ from django.core import serializers
 from .models import Event
 import json
 
+
+# Abstract:
+# Each function check if the username is in session, if not, redirect to login page.
+# Each function put the 'account_item' in 'context' to show the title of the page
+#
+
 def profile(request):
 	# if the user is not login, redirect to login page
 	if 'username' not in request.session:
@@ -20,8 +26,9 @@ def profile(request):
 	# list of tuples
 	row = cursor.fetchone()
 
-	#get user information
-	context = {'uname':row[0],'login_name':row[1],'udescription':row[3]}
+
+	context = {'account_item': 'My Profile', 'uname':row[0],'login_name':row[1],'udescription':row[3]}
+
 	'''for row in rows:
 		context['groups'] = row[0]'''
 	return render(request, 'account/profile.html', context)
@@ -31,7 +38,7 @@ def groups(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'gname': []}
+	context = {'account_item': 'Groups', 'gname': []}
 
 	#get username login name
 	client= request.session['username']
@@ -44,6 +51,7 @@ def groups(request):
 	rows = cursor.fetchall()
 	for row in rows:
 		context['gname'].append(row[0])
+
 	return render(request, 'account/groups.html', context)
 
 
@@ -51,7 +59,7 @@ def events(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'event': []}
+	context = {'account_item': 'Events', 'event': []}
 	client= request.session['username']
 
 	# query from db
@@ -63,6 +71,7 @@ def events(request):
 
 	for row in rows:
 		context['event'].append(row[0])
+
 	return render(request, 'account/events.html', context)
 
 
@@ -70,7 +79,7 @@ def rsvps(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'ename': []}
+	context = {'account_item': 'Events', 'ename': []}
 	client= request.session['username']
 
 	# query from db
@@ -82,14 +91,24 @@ def rsvps(request):
 	for row in rows:
 		context['ename'].append(row[0])
 
+
 	return render(request, 'account/RSVPs.html', context)
 
 def reviews(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'login': True}
+	context = {'account_item': 'Reviews', 'login': True}
 	return render(request, 'account/reviews.html', context)
+
+def recipes(request):
+	if 'username' not in request.session:
+		return HttpResponseRedirect(reverse("login"))
+
+	context = {'account_item': 'Recipes', 'login': True}
+	return render(request, 'account/recipes.html', context)
+
+
 
 
 
