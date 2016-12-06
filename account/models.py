@@ -15,7 +15,7 @@ class User(models.Model):
     login_name = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     udescription = models.CharField(max_length=200, blank=True, null=True)
-    ufile = models.BinaryField(blank=True, null=True)
+    ufile = models.FileField(blank=True, null=True)
 
     class Meta:
         managed = False

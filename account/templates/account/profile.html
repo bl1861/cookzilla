@@ -9,7 +9,7 @@
 			<section>
 				<div class="row placeholders">
 		            <div class="col-xs-6 col-sm-4 placeholder">
-		              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+		              <img src="{{dbuser.ufile.url}}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
 		              <h4>Photo</h4>
 		              <span class="text-muted"></span>
 		            </div>
@@ -19,9 +19,11 @@
 		</div>
 	</div>
 
-	<h2>username: {{ uname }}</h2>
-	<h2>login_name: {{ login_name }}</h2>
-	<h2>udescription: {{ udescription }}</h2>
+	<h2>username: {{ dbuser.uname }}</h2>
+	<h2>login_name: {{ dbuser.login_name }}</h2>
+	<h2>udescription: {{ dbuser.udescription }}</h2>
+	<h2>file: {{ dbuser.ufile.name}}</h2>
+
 
 {% endblock %}
 

@@ -2,9 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.db import connection
-from django.core import serializers
-from .models import Event
-import json
+from .models import User
+
 
 
 # Abstract:
@@ -26,11 +25,11 @@ def profile(request):
 	# list of tuples
 	row = cursor.fetchone()
 
+	dbuser = User.objects.get(uname = client)
 
-	context = {'account_item': 'My Profile', 'login': True, 'uname':row[0],'login_name':row[1],'udescription':row[3]}
+	#context = {'account_item': 'My Profile', 'login': True, 'uname':row[0],'login_name':row[1],'udescription':row[3],'ufile':row[4]}
+	context = {'account_item': 'My Profile', 'login': True, 'dbuser':dbuser}
 
-	'''for row in rows:
-		context['groups'] = row[0]'''
 	return render(request, 'account/profile.html', context)
 
 
