@@ -49,24 +49,18 @@ def logout(request):
 def signup(request):
 
 	if request.method == "POST":
-		form = UploadFileForm(request.POST, request.FILES['signup_file'])
+		form = UploadFileForm(request.POST, request.FILES)
+		print(form.is_valid())
 
 		if form.is_valid():
-			print ("form is valid")
 
-			name =form.cleaned_data.get('name')
-			print(name)
-			pwd =form.cleaned_data.get('pwd')
-			print(pwd)
-			nickname =form.cleaned_data.get('nickname')
-			description =form.cleaned_data.get('description')
-			#ufile=request.FILES['signup_file']
+			name =form.cleaned_data.get('signup_username')
+			pwd =form.cleaned_data.get('signup_password')
+			nickname =form.cleaned_data.get('signup_nickname')
+			description =form.cleaned_data.get('signup_desc')
 
-			with open('file/name.txt', 'wb+') as destination:
-				for chunk in request.FILES['signup_file'].chunks():
-					destination.write(chunk)
-
-			#User(uname=name,login_name=nickname,password=pwd,udescription=description,)
+			new_user = User(uname=name,login_name=nickname,password=pwd,udescription=description,ufile=form.cleaned_data['signup_file'])
+			new_user.save()
 			return render(request, 'main/login.html')
 
 	return render(request, 'main/signup.html')

@@ -5,8 +5,8 @@ class UserForm(forms.Form):
     password = forms.CharField(label='inputPassword', max_length=40)
 
 class UploadFileForm(forms.Form):
-    name = forms.CharField(max_length=50)
-    pwd = forms.CharField(max_length=50)
-    nickname = forms.CharField(max_length=50)
-    description = forms.CharField(max_length=300)
-    file = forms.FileField(required=False)
+    signup_username = forms.CharField(max_length=50)
+    signup_password = forms.CharField(max_length=50)
+    signup_nickname = forms.CharField(max_length=50)
+    signup_desc = forms.CharField(max_length=300)
+    signup_file = forms.FileField(required=False)
