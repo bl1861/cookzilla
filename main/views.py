@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .forms import UserForm
 from django.urls import reverse
 from db.models import User,Conversion,Rsvp,Egroup,Event,GroupUser,Ingredient,Photo,Recipe,Related,Report,ReportPhoto,Review,ReviewPhoto,Tag
-
+from .forms import UploadFileForm
 
 def home(request):
 	context = {'login': False}
@@ -28,7 +28,7 @@ def login(request):
 
 			user = form.cleaned_data.get('username')
 			pw = form.cleaned_data.get('password')
-			dbuser = User.objects.filter(login_name = user,password=pw)
+			dbuser = User.objects.filter(uname = user,password=pw)
 
 			if dbuser:
 				print(form.cleaned_data.get('username'))
@@ -47,6 +47,28 @@ def logout(request):
 
 
 def signup(request):
+
+	if request.method == "POST":
+		form = UploadFileForm(request.POST, request.FILES['signup_file'])
+
+		if form.is_valid():
+			print ("form is valid")
+
+			name =form.cleaned_data.get('name')
+			print(name)
+			pwd =form.cleaned_data.get('pwd')
+			print(pwd)
+			nickname =form.cleaned_data.get('nickname')
+			description =form.cleaned_data.get('description')
+			#ufile=request.FILES['signup_file']
+
+			with open('file/name.txt', 'wb+') as destination:
+				for chunk in request.FILES['signup_file'].chunks():
+					destination.write(chunk)
+
+			#User(uname=name,login_name=nickname,password=pwd,udescription=description,)
+			return render(request, 'main/login.html')
+
 	return render(request, 'main/signup.html')
 
 
