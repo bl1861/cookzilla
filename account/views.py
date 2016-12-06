@@ -16,7 +16,7 @@ def profile(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	#get username login name
+	# get username login name
 	client= request.session['username']
 
 	# query from db
@@ -39,7 +39,7 @@ def groups(request):
 
 	context = {'account_item': 'Groups', 'login': True, 'gname': []}
 
-	#get username login name
+	# get username login name
 	client= request.session['username']
 
 	# query from db
