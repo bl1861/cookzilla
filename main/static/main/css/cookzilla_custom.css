@@ -39,6 +39,10 @@ button.btn.dropdown-toggle.btn-default {
 	margin-bottom: 20px;
 }
 
+.margin-left {
+	margin-left: 20px;
+}
+
 .section-header {
 	font-size: 30px;
 	font-weight: 500;
