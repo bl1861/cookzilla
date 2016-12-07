@@ -162,7 +162,7 @@ class Event(models.Model):
 
 
 class GroupUser(models.Model):
-    uname = models.CharField(max_length=50)
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname')
     gid = models.ForeignKey(Egroup, models.DO_NOTHING, db_column='gid')
 
     class Meta:

@@ -1,8 +1,23 @@
 {% extends "account/dashboard.html" %}
 
 {% block detail %}
+
+	<div class="bs-example">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title">Posted Recipe</h3>
+		</div>
+
+	{% for obj in recipe %}
+		<a href="#" class="list-group-item">{{obj.rtitle}}</a>
+
+	{% endfor %}
+	</div>
+	</div>
+
+{% endblock %}
+
 	<h2>Recipe id: </h2>
 	<h2>Recipe title: </h2>
 	<h2>Recipe content: </h2>
-{% endblock %}
 

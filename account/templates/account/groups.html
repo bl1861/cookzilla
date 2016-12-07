@@ -2,36 +2,38 @@
 
 {% block detail %}
 
-	<section>
-		<h2 class="page-header">Group1 Title: </h2>
-		<div class="margin-bottom">
-			<h3><a>event1</a> <span class="label label-default">RSVP</span></h3>
-			<h4>Content is here!</h4>
-		</div>
-		<div class="margin-bottom">
-			<h3><a>event2</a> </h3>
-			<h4>Content is here!</h4>
-		</div>
-	</section>
+	{% for k , vs in group_dict.items %}
 
-	<section>
-		<h2 class="page-header">Group2 Title: </h2>
-		<div class="margin-bottom">
-			<h3><a>event1</a> <span class="label label-default">RSVP</span></h3>
-			<h4>Content is here!</h4>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="panel-title"><h4>Group Name : {{k.gname}}</h4></div>
 		</div>
-		<div class="margin-bottom">
-			<h3><a>event2</a> </h3>
-			<h4>Content is here!</h4>
-		</div>
-	</section>
+		<table class="table">
+			<thead><tr><th><h4>event name</h4></th><th><h4>event time</h4></th><th><h4>rsvp</h4></th></tr></thead>
+			<tbody>
+			{% for ev,rsvp in vs.items %}
+			  <tr>
+				  <td><h5><a>{{ev.ename}}</a></h5></td>
+				  <td><h5>{{ev.etime}}</h5></td>
+				  <td>
+					  {% if not rsvp %}
+						<h5><span class="label label-default">RSVP</span></h5>
+					  {% endif %}
+				  </td>
+			  </tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	{% endfor %}
 
 	<section>
 		<form method="POST" action=""> {% csrf_token %}
 		  <h3 class="form-head">Create new Group</h3>
 		  <div class="form-text">
 		    <label for="signup_username">Group name</label>
-		    <input type="text" class="form-control margin-bottom" id="signup_username" placeholder="Example input" name="signup_username">
+		    <input type="text" class="form-control margin-bottom" id="signup_username" placeholder="Example input" name="groupname">
      		<button type="submit" class="btn btn-primary">Create</button>
 		  </div>
 		</form>
