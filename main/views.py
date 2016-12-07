@@ -54,14 +54,17 @@ def signup(request):
 
 		if form.is_valid():
 
-			name =form.cleaned_data.get('signup_username')
-			pwd =form.cleaned_data.get('signup_password')
-			nickname =form.cleaned_data.get('signup_nickname')
-			description =form.cleaned_data.get('signup_desc')
+			name = form.cleaned_data.get('signup_username')
+			pwd = form.cleaned_data.get('signup_password')
+			nickname = form.cleaned_data.get('signup_nickname')
+			description = form.cleaned_data.get('signup_desc')
+			file = form.cleaned_data['signup_file']
 
-			new_user = User(uname=name,login_name=nickname,password=pwd,udescription=description,ufile=form.cleaned_data['signup_file'])
+			# construct a new register user
+			new_user = User(uname=name,login_name=nickname,password=pwd,udescription=description,ufile=file)
+			#save to database
 			new_user.save()
-			return render(request, 'main/login.html')
+			return HttpResponseRedirect(reverse("login"))
 
 	return render(request, 'main/signup.html')
 

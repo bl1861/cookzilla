@@ -4,13 +4,16 @@
 
 	<div class="jumbotron">
 		<div class="container">
-			<h2>Hello {{ username }}, Welcome to CookZilla!</h2>
+			<h2>Hello {{ dbuser.uname }}, Welcome to CookZilla!</h2>
 	        <h2 class="page-header">Profile </h2>
 			<section>
 				<div class="row placeholders">
 		            <div class="col-xs-6 col-sm-4 placeholder">
-		              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-		              <h4>Photo</h4>
+					{% if dbuser.ufile %}
+		              <img src="{{dbuser.ufile.url}}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+		            {% endif %}
+					  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+		               <h4>Photo</h4>
 		              <span class="text-muted"></span>
 		            </div>
 				</div>
@@ -19,9 +22,14 @@
 		</div>
 	</div>
 
-	<h2>username: {{ uname }}</h2>
-	<h2>login_name: {{ login_name }}</h2>
-	<h2>udescription: {{ udescription }}</h2>
+	<h2>username: {{ dbuser.uname }}</h2>
+	<h2>login_name: {{ dbuser.login_name }}</h2>
+	<h2>udescription: {{ dbuser.udescription }}</h2>
+
+    {% if dbuser.ufile %}
+    <h2>file: {{ dbuser.ufile.name}}</h2>
+	{% endif %}
+
 
 {% endblock %}
 

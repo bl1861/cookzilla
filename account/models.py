@@ -15,7 +15,7 @@ class User(models.Model):
     login_name = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     udescription = models.CharField(max_length=200, blank=True, null=True)
-    ufile = models.BinaryField(blank=True, null=True)
+    ufile = models.FileField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -162,7 +162,7 @@ class Event(models.Model):
 
 
 class GroupUser(models.Model):
-    uname = models.CharField(max_length=50)
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname')
     gid = models.ForeignKey(Egroup, models.DO_NOTHING, db_column='gid')
 
     class Meta:

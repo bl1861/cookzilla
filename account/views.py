@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.db import connection
-from django.core import serializers
-from .models import Event
-import json
+from .models import User, Recipe, Egroup, Event, Rsvp, GroupUser, Review
+from .forms import NewGroupForm
+
 
 
 # Abstract:
@@ -26,11 +26,9 @@ def profile(request):
 	# list of tuples
 	row = cursor.fetchone()
 
+	dbuser = User.objects.get(uname = client)
+	context = {'account_item': 'My Profile', 'login': True, 'dbuser':dbuser}
 
-	context = {'account_item': 'My Profile', 'login': True, 'uname':row[0],'login_name':row[1],'udescription':row[3]}
-
-	'''for row in rows:
-		context['groups'] = row[0]'''
 	return render(request, 'account/profile.html', context)
 
 
@@ -38,19 +36,54 @@ def groups(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'account_item': 'Groups', 'login': True, 'gname': []}
+	context = {'account_item': 'Groups', 'login': True, 'group_dict': {}}
 
 	# get username login name
 	client= request.session['username']
 
-	# query from db
-	cursor = connection.cursor()
-	cursor.execute("SELECT t3.gname from group_user as t1 inner join _user as t2 on t1.uname=t2.uname inner join egroup as t3 on t1.gid=t3.gid where t2.uname='"+client+"'")
+	# if this is a POST request, handle the input
+	if request.method == "POST":
+		form = NewGroupForm(request.POST)
+		# if is valid ,create new group and save to database
+		if form.is_valid():
+			# get the input group name
+			groupname = form.cleaned_data.get('groupname')
+			# create new instance of egroup and save to db
+			new_group = Egroup(gname=groupname)
+			new_group.save()
+			# create new instance of group_user and save to db
+			join_group = GroupUser(uname=User.objects.get(uname=client),gid=new_group)
+			join_group.save()
+			print('create successfully !')
 
-	# iterate of gname
-	rows = cursor.fetchall()
-	for row in rows:
-		context['gname'].append(row[0])
+	'''# query from db
+	cursor = connection.cursor()
+	cursor.execute("SELECT t3.gname from group_user as t1 inner join _user as t2 on t1.uname=t2.uname inner join egroup as t3 on t1.gid=t3.gid where t2.uname='"+client+"'")'''
+
+	# create dictrionary for group and corresponding event
+	group_event_rsvp_dict = {}
+	# get GroupUser Queryset
+	group_user = GroupUser.objects.filter(uname__uname = client)
+
+	# iterate GroupUser Queryset
+	for obj in group_user:
+		print(obj.gid.gname)
+		# get Egroup object
+		group_obj = obj.gid
+		# get Event Queryset
+		event_sets = Event.objects.filter(gid__gid = group_obj.gid)
+		# create dictrionary for event and corresponding rsvp
+		event_rsvp_dict = {}
+		# iterate Event Queryset
+		for event in event_sets:
+			# check if rsvp
+			rs = Rsvp.objects.filter(eid__eid = event.eid,uname__uname = client)
+			print(rs)
+			event_rsvp_dict[event] = rs
+
+		group_event_rsvp_dict[group_obj] = event_rsvp_dict
+
+	context['group_dict'] = group_event_rsvp_dict
 
 	return render(request, 'account/groups.html', context)
 
@@ -98,15 +131,23 @@ def reviews(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'account_item': 'Reviews', 'login': True}
+	client= request.session['username']
+	reviews = Review.objects.filter(uname=client)
+
+	context = {'account_item': 'Reviews', 'login': True, 'reviews': reviews}
 	return render(request, 'account/reviews.html', context)
 
 def recipes(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'account_item': 'Recipes', 'login': True}
+	client= request.session['username']
+	recipe = Recipe.objects.filter(uname = client)
+	context = {'account_item': 'Recipes', 'login': True , 'recipe':list(recipe)}
+
 	return render(request, 'account/recipes.html', context)
+
+
 
 
 

@@ -1,10 +1,25 @@
 {% extends "account/dashboard.html" %}
 
 {% block detail %}
+
+	<div class="bs-example">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title">Posted Review</h3>
+		</div>
+
+	{% for obj in reviews %}
+		<a href="#" class="list-group-item">{{obj.rwtitle}}</a>
+
+	{% endfor %}
+	</div>
+	</div>
+
+{% endblock %}
+
 	<h2>rwid: {{ rwid }}</h2>
 	<h2>title: {{ rwtitle }}</h2>
 	<h2>context: {{ rwcontext }}</h2>
 	<h2>suggestion: {{ suggestion }}</h2>
 	<h2>rating: {{ rating }} </h2>
-{% endblock %}
 
