@@ -1,10 +1,53 @@
 {% extends "main/header.html" %}
 
 {% block content %}
+
 <div class="jumbotron">
 	<div class="container">
 		<h2>This is Search {{ search_type }} page!</h2><br>
 		<a class="btn btn-lg btn-success" href="{% url 'home' %}" role="button">Home</a>
+
+		{% if result_tag %}
+		<section>
+			<h2 class="page-header">Recipe : </h2>
+			<hr class="divider">
+			<div class="margin-bottom">
+				{% for obj in result_tag %}
+				<h3><a href="#"> {{obj.rtitle}}</a></h3>
+				<h4>Content is here!</h4>
+				{% endfor %}
+			</div>
+		</section>
+		{% endif %}
+
+		{% if result_title %}
+		<section>
+			<h2 class="page-header">Recipe : </h2>
+			<hr class="divider">
+			<div class="margin-bottom">
+				{% for obj in result_title %}
+				<h3><a href="#"> {{obj.rtitle}}</a></h3>
+				<h4>Content is here!</h4>
+				{% endfor %}
+			</div>
+		</section>
+		{% endif %}
+
+		{% if result_content %}
+		<section>
+			<h2 class="page-header">Recipe : </h2>
+			<hr class="divider">
+			<div class="margin-bottom">
+				{% for obj in result_content %}
+				<h3><a href="#"> {{obj.rtitle}}</a></h3>
+				<h4>Content is here!</h4>
+				{% endfor %}
+			</div>
+		</section>
+		{% endif %}
+
 	</div>
+
 </div>
+
 {% endblock %}

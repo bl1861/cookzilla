@@ -1,0 +1,27 @@
+2014-10-15 18	70.0	Rain	Rain
+2014-10-16 8	68.0	Rain	Light Rain
+2014-10-04 8	64.9	Rain	Heavy Rain
+2014-10-11 4	53.6	Rain	Light Rain
+2014-10-23 6	50.0	Rain	Light Rain
+2014-10-11 6	52.0	Rain	Light Rain
+2014-10-23 8	51.1	Rain	Light Rain
+2014-10-11 8	52.0	Rain	Light Rain
+2014-10-08 0	64.0	Rain	Light Rain
+2014-10-07 22	64.0	Rain	Light Rain
+2014-10-16 10	64.0	Rain	Light Rain
+2014-10-04 10	66.0	Rain	Rain
+2014-10-15 22	70.0	Rain	Light Rain
+2014-10-04 12	68.0	Rain	Light Rain
+2014-10-16 2	69.1	Rain	Heavy Rain
+2014-10-25 22	60.1	Rain	Light Rain
+2014-10-23 10	51.1	Rain	Light Rain
+2014-10-16 4	69.1	Rain	Rain
+2014-10-21 20	57.9	Rain	Rain
+2014-10-04 4	63.0	Rain	Light Rain
+2014-10-23 12	50.0	Rain	Light Rain
+2014-10-31 20	50.0	Rain	Light Rain
+2014-10-15 16	72.0	Rain	Light Rain
+2014-10-23 2	51.1	Rain	Light Rain
+2014-10-11 2	55.9	Rain	Light Rain
+2014-10-23 14	51.1	Rain	Light Rain
+2014-10-31 22	48.0	Rain	Light Rain

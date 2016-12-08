@@ -4,6 +4,7 @@ from .forms import UserForm
 from django.urls import reverse
 from db.models import User,Conversion,Rsvp,Egroup,Event,GroupUser,Ingredient,Photo,Recipe,Related,Report,ReportPhoto,Review,ReviewPhoto,Tag
 from .forms import UploadFileForm
+from django.db import connection
 
 def home(request):
 	context = {'login': False}
@@ -59,9 +60,17 @@ def signup(request):
 			nickname = form.cleaned_data.get('signup_nickname')
 			description = form.cleaned_data.get('signup_desc')
 			file = form.cleaned_data['signup_file']
+			photo = form.cleaned_data['signup_photo']
+
+			# query from db
+			cursor = connection.cursor()
+			result = cursor.execute("SELECT uname from _user as u WHERE u.uname='"+name+"'")
+
+			if result:
+				return HttpResponseRedirect(reverse("signup"))
 
 			# construct a new register user
-			new_user = User(uname=name,login_name=nickname,password=pwd,udescription=description,ufile=file)
+			new_user = User(uname=name,login_name=nickname,password=pwd,udescription=description,ufile=file,uphoto=photo)
 			#save to database
 			new_user.save()
 			return HttpResponseRedirect(reverse("login"))

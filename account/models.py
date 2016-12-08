@@ -16,6 +16,7 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     udescription = models.CharField(max_length=200, blank=True, null=True)
     ufile = models.FileField(blank=True, null=True)
+    uphoto = models.FileField(blank=True, null=True)
 
     class Meta:
         managed = False

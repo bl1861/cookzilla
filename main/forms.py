@@ -10,3 +10,4 @@ class UploadFileForm(forms.Form):
     signup_nickname = forms.CharField(max_length=50)
     signup_desc = forms.CharField(max_length=300)
     signup_file = forms.FileField(required=False)
+    signup_photo = forms.FileField(required=False)
