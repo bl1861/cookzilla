@@ -3,16 +3,19 @@
 {% block detail %}
 
 	<div class="bs-example">
-	<div class="panel panel-success">
-		<div class="panel-heading">
-			<h3 class="panel-title">Posted Recipe</h3>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Posted Recipe</h3>
+			</div>
+
+		{% for obj in recipe %}
+			<a href="#" class="list-group-item">{{obj.rtitle}}</a>
+
+		{% endfor %}
 		</div>
-
-	{% for obj in recipe %}
-		<a href="#" class="list-group-item">{{obj.rtitle}}</a>
-
-	{% endfor %}
-	</div>
+		<div>
+        	<a class="btn btn-primary" href="{% url 'new_recipe' %}" role="button">New Recipe</a>
+		</div>
 	</div>
 
 {% endblock %}
