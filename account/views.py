@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.db import connection
 from .models import User, Recipe, Egroup, Event, Rsvp, GroupUser, Review
-from .forms import NewGroupForm
+from .forms import NewGroupForm, NewEventForm
 
 
 
@@ -67,7 +67,7 @@ def groups(request):
 
 	# iterate GroupUser Queryset
 	for obj in group_user:
-		print(obj.gid.gname)
+		# print(obj.gid.gname)
 		# get Egroup object
 		group_obj = obj.gid
 		# get Event Queryset
@@ -149,8 +149,23 @@ def recipes(request):
 	return render(request, 'account/recipes.html', context)
 
 
+def new_event(request, id):
+	print ("new_event gid = ", id)
+	if 'username' not in request.session:
+		return HttpResponseRedirect(reverse("login"))
 
+	context = {'account_item': 'Groups', 'login': True, 'group_dict': {}}
+	# get username login name
+	client= request.session['username']
 
+	# if this is a POST request, handle the input
+	if request.method == "POST":
+		form = NewEventForm(request.POST)
+		# if is valid ,create new group and save to database
+		if form.is_valid():
+			print('is_valid')
+		else:
+			print('not_valid')
 
-
+	return HttpResponseRedirect(reverse("groups"))
 

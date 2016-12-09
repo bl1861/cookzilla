@@ -78,13 +78,13 @@ def signup(request):
 	return render(request, 'main/signup.html')
 
 def header(request):
-	print('test')
 	context = {'login': False}
 	if 'username' in request.session:
 		context['login'] = True
 		context['username'] = request.session['username']
+		return render(request, 'main/home.html', context);
 
-	cursor = connection.cursor()
+	'''cursor = connection.cursor()
 	cursor.execute('SELECT distinct tname from tag')
 	tags = cursor.fetchall()
 
@@ -101,8 +101,9 @@ def header(request):
 
 		tag_dictionary[tag[0]] = recipe_list
 
-	context['all_tag'] = tag_dictionary
-	return render(request, 'main/header.html', context)
+	context['all_tag'] = tag_dictionary'''
+
+	return render(request, 'main/home.html')
 
 
 
