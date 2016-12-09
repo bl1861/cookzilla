@@ -14,8 +14,13 @@
 					<input class="btn btn-success" type="submit" value="Joined"></input>
 				</form>
 			</div>
-			<p>Time: </p>
-			<p>Members: </p>
+			<p>Title: {{dbevent.ename}}</p>
+			<p>Time: {{dbevent.etime}}</p>
+			<p>Members: 
+				{% for rsvp in rsvp_set %}
+					<h4>{{rsvp.uname.uname}}</h4>
+				{% endfor %}
+			</p>
 			<p>Description: </p>
 
 		</section>
@@ -62,7 +67,7 @@
 			    <textarea class="form-control form-textarea" id="report_text" rows="3" name="report_text"></textarea>
 			    <label class="form-margin-top" for="report_pic">Picture</label>
 		    	<input type="file" class="form-control-file" id="report_pic" aria-describedby="fileHelp" name="report_pic">
-			    <input> class="btn btn-primary form-margin-top" type="submit" >
+			    <input class="btn btn-primary form-margin-top" type="submit" >
 			</form>
 		</section>
 

@@ -6,8 +6,6 @@ urlpatterns = [
 	url(r'^profile/$', views.profile, name='profile'),
 	url(r'^recipes/$', views.recipes, name='recipes'),
 	url(r'^groups/$', views.groups, name='groups'),
-	url(r'^events/$', views.events, name='events'),
-	url(r'^RSVPs/$', views.rsvps, name='RSVPs'),
 	url(r'^reviews/$', views.reviews, name='reviews'),
 	url(r'^groups/(?P<id>\d+)/new_event/$', views.new_event, name='new_event'),
 ]
