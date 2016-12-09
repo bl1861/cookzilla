@@ -3,8 +3,57 @@
 {% block content %}
 <div class="jumbotron">
 	<div class="container">
+
+		<!-- This is for showing user's groups -->
+		{% for k , v in group_dict.items %}
 		<section>
-			<h2 class="page-header">Group1 Title: </h2>
+			<!-- This is for group name -->
+			<h2 class="page-header">
+				{{k.gname}} 
+				{% if v.joined %}
+				<span class="label label-default navbar-right">Joined</span>
+				{% endif %}
+
+				{% if not v.joined %}
+				<form class="inline section-header" method="POST" action="{% url 'join_group' id=k.gid %}"> {% csrf_token %}
+					<input class="btn btn-primary navbar-right" type="submit" value="Join"></input>
+				</form>
+				{% endif %}
+			</h2>
+
+			<!-- This is for events in group -->
+			{% for ev,rsvp in v.group_detail.items %}
+				<div class="margin-bottom">
+					<!-- This is event name -->
+					<h3>
+						<a href="{% url 'event' id=ev.eid %}">{{ev.ename}}</a> 
+						<!-- This is to show RSVP tag-->
+						{% if rsvp %}
+						<span class="label label-default">RSVP</span>
+						{% endif %}
+					</h3>
+					<h4>{{ev.etime}}</h4>
+				</div>
+			{% endfor %}
+		</section>
+		{% endfor %}
+
+
+
+
+
+
+
+
+<!-- 
+		<section>
+			<h2 class="page-header">
+				Group1 Title: 				
+				<form class="inline section-header" method="POST">
+					<input class="btn btn-primary" type="submit" value="Join"></input>
+				</form>
+				<span class="label label-default">Joined</span>
+			</h2>
 			<div class="margin-bottom">
 				<h3><a>event1</a> <span class="label label-default">RSVP</span></h3>
 				<h4>Content is here!</h4>
@@ -20,7 +69,13 @@
 		</section>
 
 		<section>
-			<h2 class="page-header">Group2 Title: </h2>
+			<h2 class="page-header">
+				Group2 Title: 	
+				<form class="inline section-header" method="POST">
+					<input class="btn btn-primary" type="submit" value="Join"></input>
+				</form>
+				<span class="label label-default">Joined</span>
+			</h2>
 			<div class="margin-bottom">
 				<h3>event 1</h3>
 				<h4>Content is here!</h4>
@@ -33,7 +88,7 @@
 				<h3>event3</h3>
 				<h4>Content is here!</h4>
 			</div>
-		</section>
+		</section> -->
 
 	</div>
 </dov

@@ -17,9 +17,9 @@
 			<div class="margin-bottom">
 				<!-- This is event name -->
 				<h3>
-					<a>{{ev.ename}}</a> 
+					<a href="{% url 'event' id=ev.eid %}">{{ev.ename}}</a> 
 					<!-- This is to show RSVP tag-->
-					{% if not rsvp %}
+					{% if rsvp %}
 					<span class="label label-default">RSVP</span>
 					{% endif %}
 				</h3>
@@ -81,18 +81,18 @@
 
 
 	<!-- This section is for creating new group -->
-<!-- 	<section>
+	<section>
 		<div>
-		<form method="POST" action=""> {% csrf_token %}
-		  <h3 class="form-head">Create new Group</h3>
-		  <div class="form-text">
-		    <label for="signup_username">Group name</label>
-		    <input type="text" class="form-control margin-bottom" id="signup_username" placeholder="Example input" name="groupname">
-     		<button type="submit" class="btn btn-primary">Create</button>
-		  </div>
-		</form>
-	</div>
-	</section> -->
+			<form method="POST" action=""> {% csrf_token %}
+			  <h3 class="form-head">Create new Group</h3>
+			  <div class="form-text">
+			    <label for="signup_username">Group name</label>
+			    <input type="text" class="form-control margin-bottom" id="signup_username" placeholder="Example input" name="groupname">
+	     		<button type="submit" class="btn btn-primary">Create</button>
+			  </div>
+			</form>
+		</div>
+	</section>
 
 
 {% endblock %}
