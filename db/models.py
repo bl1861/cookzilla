@@ -84,6 +84,8 @@ class Recipe(models.Model):
     rtitle = models.CharField(max_length=100, blank=True, null=True)
     rcontent = models.CharField(max_length=200, blank=True, null=True)
     rserving = models.IntegerField(blank=True, null=True)
+    rtime = models.DateField()
+    rphoto = models.FileField(blank=True, null=True)
 
     class Meta:
         db_table = 'recipe'
@@ -157,3 +159,19 @@ class Tag(models.Model):
         db_table = 'tag'
         unique_together = (('rid', 'tname'),)
 
+
+'''class UserRecipeHistory(models.Model):
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='visit_uname', blank=True, null=True)
+    rid = models.ForeignKey(Recipe, models.DO_NOTHING, db_column='rid',related_name='visit_rid')
+
+    class Meta:
+        db_table = 'user_recipe_history'
+        unique_together = (('uname', 'rid'),)
+
+class UserTagHistory(models.Model):
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='visit_uname', blank=True, null=True)
+    tname = models.ForeignKey(Tag, models.DO_NOTHING, db_column='tname',related_name='tag_rid')
+
+    class Meta:
+        db_table = 'user_tag_history'
+        unique_together = (('uname', 'rid'),)'''

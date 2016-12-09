@@ -142,8 +142,9 @@ def recipes(request):
 		return HttpResponseRedirect(reverse("login"))
 
 	client= request.session['username']
+	# get the recipe from this user
 	recipe = Recipe.objects.filter(uname = client)
-	context = {'account_item': 'Recipes', 'login': True , 'recipe':list(recipe)}
+	context = {'account_item': 'Recipes', 'login': True , 'recipe':recipe}
 
 	return render(request, 'account/recipes.html', context)
 

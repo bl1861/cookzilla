@@ -10,12 +10,13 @@
 				<div class="row placeholders">
 		            <div class="col-xs-6 col-sm-4 placeholder">
 					{% if dbuser.uphoto %}
-		              <img src="{{dbuser.uphoto.url}}" width="200" height="200" class="img-responsive" alt="#">
+		              <img src="{{dbuser.uphoto.url}}" width="200" height="200" alt="#">
 					{% else %}
 					  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-		               <h4>Photo</h4>
+		            {% endif %}
+						<h4>Photo</h4>
 		              <span class="text-muted"></span>
-					{% endif %}
+
 		            </div>
 				</div>
 			</section>
@@ -31,6 +32,4 @@
     <h2>file: <a href="{{ dbuser.ufile.url}}">{{ dbuser.ufile.name}}</a></h2>
 	{% endif %}
 
-
 {% endblock %}
-

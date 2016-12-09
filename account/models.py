@@ -201,6 +201,8 @@ class Recipe(models.Model):
     rcontent = models.CharField(max_length=200, blank=True, null=True)
     rserving = models.IntegerField(blank=True, null=True)
     uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname', blank=True, null=True)
+    rtime = models.DateField()
+    rphoto = models.FileField(blank=True, null=True)
 
     class Meta:
         managed = False

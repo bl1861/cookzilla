@@ -4,30 +4,48 @@
 <div class="jumbotron">
 	<div class="container">
 		<!-- Recipe Info -->
-		<section>
-			<div class="page-header">
-				<span class="section-header">Recipe Information:</span>
-				<form class="inline section-header" method="POST">
-					<input class="btn btn-primary" type="submit" value="RSVP"></input>
-				</form>
-				<form class="inline section-header" action="">
-					<input class="btn btn-success" type="submit" value="Joined"></input>
-				</form>
-			</div>
 
-			<p>Rating: </p>
-			<p>Time: </p>
-			<p>Ingredients: </p>
-			<p>Description: </p>
+		<section>
+		{% for key , value in recipe_dictionary.items %}
+			{% if key == "recipe" %}
+				{% for obj in value %}
+				<div class="page-header">
+					<span class="section-header">{{obj.rtitle}}</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-6 col-sm-4 placeholder">
+		              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+		            </div>
+		        </div>
+				<p>Rating: </p>
+				<p>Time: {{obj.rtime}}</p>
+				<p>Description: {{obj.rcontent}}</p>
+				{% endfor %}
+			{% endif %}
+		{% endfor %}
+
+				<p>Ingredients:
+		{% for key , value in recipe_dictionary.items %}
+			{% if key == "ingredient" %}
+				{% for obj in value %}
+				  <button class="btn btn-default">{{obj.iname}}</button>
+				{% endfor %}
+			{% endif %}
+		{% endfor %}
+				</p>
+
 		</section>
 
 		<!-- Reviews from users -->
 		<section>
 			<h2 class="page-header">Reviews: </h2>
 			<hr class="divider">
+		{% for key , value in recipe_dictionary.items %}
+			{% if key == "review" %}
+				{% for obj in value %}
 			<div class="margin-bottom">
-				<h3>Review1</h3>
-				<h4>Content is here!</h4>
+				<h3>{{obj.rwtitle}}</h3>
+				<h4>{{obj.rwcontext}}</h4>
 				<div class="row">
 					<div class="col-xs-6 col-sm-4 placeholder">
 		              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
@@ -35,25 +53,9 @@
 		        </div>
 			</div>
 			<hr class="divider">
-			<div class="margin-bottom">
-				<h3>Review2</h3>
-				<h4>Content is here!</h4>
-				<div class="row">
-					<div class="col-xs-6 col-sm-4 placeholder">
-		              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
-		            </div>
-		        </div>
-			</div>
-			<hr class="divider">
-			<div class="margin-bottom">
-				<h3>Review3</h3>
-				<h4>Content is here!</h4>
-				<div class="row">
-					<div class="col-xs-6 col-sm-4 placeholder">
-		              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
-		            </div>
-		        </div>
-			</div>
+				{% endfor %}
+			{% endif %}
+		{% endfor %}
 		</section>
 
 		<!-- Review by user -->
@@ -63,16 +65,22 @@
 			    <textarea class="form-control form-textarea" id="review_text" rows="3" name="review_text"></textarea>
 			    <label class="form-margin-top" for="review_pic">Picture</label>
 		    	<input type="file" class="form-control-file" id="review_pic" aria-describedby="fileHelp" name="review_pic">
-			    <input class="btn btn-primary form-margin-top" type="submit" ></input>
+			    <input class="btn btn-primary form-margin-top" type="submit" >
 			</form>
 		</section>
 
 		<!-- Related links -->
 		<section>
 			<h2 class="page-header">Related: </h2>
-			<a href="#"><p>Related1</p></a>
-			<a href="#"><p>Related2</p></a>
-			<a href="#"><p>Related3</p></a>
+		{% for key , value in recipe_dictionary.items %}
+			{% if key == "relate" %}
+				{% for tag, recipe in value.items %}
+			      {% for r in recipe %}
+			        <a href="/recipe/{{r.rid}}"><p>{{r.rtitle}}</p></a>
+			      {% endfor %}
+				{% endfor %}
+			{% endif %}
+		{% endfor %}
 		</section>
 
 

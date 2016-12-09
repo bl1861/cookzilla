@@ -77,5 +77,32 @@ def signup(request):
 
 	return render(request, 'main/signup.html')
 
+def header(request):
+	print('test')
+	context = {'login': False}
+	if 'username' in request.session:
+		context['login'] = True
+		context['username'] = request.session['username']
+
+	cursor = connection.cursor()
+	cursor.execute('SELECT distinct tname from tag')
+	tags = cursor.fetchall()
+
+	# dictionary to store key:tag / value: recipe model list
+	tag_dictionary = {}
+	# list to store recipe of same tag
+
+	for tag in tags :
+		recipe_list = []
+		recipe_set = Recipe.objects.raw("SELECT * from recipe inner join tag on recipe.rid=tag.rid WHERE tag.tname='"+str(tag[0])+"'")
+		print(tag[0])
+		for recipe in recipe_set:
+			recipe_list.append(recipe)
+
+		tag_dictionary[tag[0]] = recipe_list
+
+	context['all_tag'] = tag_dictionary
+	return render(request, 'main/header.html', context)
+
 
 
