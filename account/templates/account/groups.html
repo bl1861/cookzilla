@@ -2,33 +2,87 @@
 
 {% block detail %}
 
-	{% for k , vs in group_dict.items %}
 
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<div class="panel-title"><h4>Group Name : {{k.gname}}</h4></div>
-		</div>
-		<table class="table">
-			<thead><tr><th><h4>event name</h4></th><th><h4>event time</h4></th><th><h4>rsvp</h4></th></tr></thead>
-			<tbody>
-			{% for ev,rsvp in vs.items %}
-			  <tr>
-				  <td><h5><a>{{ev.ename}}</a></h5></td>
-				  <td><h5>{{ev.etime}}</h5></td>
-				  <td>
-					  {% if not rsvp %}
-						<h5><span class="label label-default">RSVP</span></h5>
-					  {% endif %}
-				  </td>
-			  </tr>
-			{% endfor %}
-			</tbody>
-		</table>
+	<!-- This is for showing user's groups -->
+	{% for k , vs in group_dict.items %}
+	<section>
+		<!-- This is for group name -->
+		<h2 class="page-header">
+			{{k.gname}} 
+			<button class="btn btn-success navbar-right" data-toggle="modal" data-target="#eventModal{{k.gid}}">New Event</button>
+		</h2>
+
+		<!-- This is for events in group -->
+		{% for ev,rsvp in vs.items %}
+			<div class="margin-bottom">
+				<!-- This is event name -->
+				<h3>
+					<a>{{ev.ename}}</a> 
+					<!-- This is to show RSVP tag-->
+					{% if not rsvp %}
+					<span class="label label-default">RSVP</span>
+					{% endif %}
+				</h3>
+				<h4>{{ev.etime}}</h4>
+			</div>
+		{% endfor %}
+	</section>
+
+	<!-- Modal -->
+	<div class="modal fade" id="eventModal{{k.gid}}" tabindex="-1" role="dialog" 
+	     aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <!-- Modal Header -->
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal">
+	                       <span aria-hidden="true">&times;</span>
+	                       <span class="sr-only">Close</span>
+	                </button>
+	                <h4 class="modal-title" id="myModalLabel">
+	                    New Event for {{k.gname}}
+	                </h4>
+	            </div>
+	            
+	            <!-- Modal Body -->
+                <form role="form" method="POST" action="{% url 'new_event' id=k.gid %}"> {% csrf_token %}
+                	<div class="modal-body">
+	                  <div class="form-group">
+	                    <label for="event_name">Event Name</label>
+	                    <input type="text" class="form-control"
+	                      id="event_name" placeholder="Enter Name" name="event_name"/>
+	                  </div>
+	                  <div class="form-group">
+							<label for="event_time">Start Time</label>
+  							<input type="text" id="datetimepicker{{k.gid}}" class="form-control" placeholder="Select Time" name="event_time"/>
+							<script>
+								$("#datetimepicker{{k.gid}}").datetimepicker();
+							</script>
+	                  </div>
+	                </div>
+	                <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">
+		                            Close
+		                </button>
+		                <button type="submit" class="btn btn-primary">
+		                    Save changes
+		                </button>
+		            </div>
+                </form>
+	        </div>
+	    </div>
 	</div>
+
+
 
 	{% endfor %}
 
-	<section>
+
+
+
+	<!-- This section is for creating new group -->
+<!-- 	<section>
+		<div>
 		<form method="POST" action=""> {% csrf_token %}
 		  <h3 class="form-head">Create new Group</h3>
 		  <div class="form-text">
@@ -37,7 +91,9 @@
      		<button type="submit" class="btn btn-primary">Create</button>
 		  </div>
 		</form>
-	</section>
+	</div>
+	</section> -->
+
 
 {% endblock %}
 

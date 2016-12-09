@@ -9,5 +9,6 @@ urlpatterns = [
 	url(r'^events/$', views.events, name='events'),
 	url(r'^RSVPs/$', views.rsvps, name='RSVPs'),
 	url(r'^reviews/$', views.reviews, name='reviews'),
+	url(r'^groups/(?P<id>\d+)/new_event/$', views.new_event, name='new_event'),
 ]
 
