@@ -3,7 +3,7 @@
 {% block content %}
 <div class="jumbotron">
 	<div class="container">
-		<form class="form-signup" method="POST" action="	"> {% csrf_token %}
+		<form enctype="multipart/form-data" class="form-signup" method="POST" action="	"> {% csrf_token %}
 		  <h2 class="form-head">New Recipe</h2>
 		  <div class="form-group">
 		    <label for="recipe_title">Recipe Name</label>
@@ -95,7 +95,9 @@
 			    <option value="5">Korea food</option>
 			  </select>
 		  </div>
-
+		  <label class="form-margin-top" for="recipe_photo">Picture</label>
+		  <input type="file" class="form-control-file" id="recipe_photo" aria-describedby="fileHelp" name="recipe_photo">
+		  <small id="photoHelp" class="form-text text-muted">Upload recipe photo here!</small><br><br>
 		  <button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>

@@ -11,15 +11,15 @@ class RecipeForm(forms.Form):
     quantity1 = forms.IntegerField()
     unit1 = forms.CharField(label="unit1", max_length=50)
 
-    iname2 = forms.CharField(label="iname2", max_length=50)
+    iname2 = forms.CharField(label="iname2", max_length=50,required=False)
     # quantity2 = forms.CharField(label="quantity2", max_length=50)
-    quantity2 = forms.IntegerField()
-    unit2 = forms.CharField(label="unit2", max_length=50)
+    quantity2 = forms.IntegerField(required=False)
+    unit2 = forms.CharField(label="unit2", max_length=50, required=False)
 
-    iname3 = forms.CharField(label="iname3", max_length=50)
+    iname3 = forms.CharField(label="iname3", max_length=50, required=False)
     # quantity3 = forms.CharField(label="quantity3", max_length=50)
-    quantity3 = forms.IntegerField()
-    unit3 = forms.CharField(label="unit3", max_length=50)
+    quantity3 = forms.IntegerField(required=False)
+    unit3 = forms.CharField(label="unit3", max_length=50, required=False)
 
     OPTIONS = [
         ('1', 'Cake'),
@@ -29,5 +29,7 @@ class RecipeForm(forms.Form):
         ('5', 'Korea food')
     ]
 
-    tags = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple, choices=OPTIONS)
+    tags = forms.MultipleChoiceField(label="tags", required=False, widget=forms.CheckboxSelectMultiple, choices=OPTIONS)
+
+    recipe_photo = forms.FileField(required=False)
 
