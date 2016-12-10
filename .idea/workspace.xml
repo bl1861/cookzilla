@@ -2,34 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="523ce428-9eab-472f-b90c-2c567174ef31" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/group/templates/group/new_group.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/BinghaoLI-Resume.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/IMG_0092.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/IMG_0092_DSatiCL.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/IMG_0095.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/IMG_0590.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/IMG_0590_Hzv9XxC.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/IMG_4864.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/f2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/gel.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/gel_XdxDscF.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/gel_rDBjHcY.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/ps1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/raw.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/raw_RL9rshf.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/weather.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/static/main/css/cookzilla_custom.css" afterPath="$PROJECT_DIR$/main/static/main/css/cookzilla_custom.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event/templates/event/event_detail.html" afterPath="$PROJECT_DIR$/event/templates/event/event_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/group/templates/group/group_all.html" afterPath="$PROJECT_DIR$/group/templates/group/group_all.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account/templates/account/groups.html" afterPath="$PROJECT_DIR$/account/templates/account/groups.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/header.html" afterPath="$PROJECT_DIR$/main/templates/main/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account/templates/account/profile.html" afterPath="$PROJECT_DIR$/account/templates/account/profile.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recipe/templates/recipe/recipe.html" afterPath="$PROJECT_DIR$/recipe/templates/recipe/recipe.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account/views.py" afterPath="$PROJECT_DIR$/account/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event/views.py" afterPath="$PROJECT_DIR$/event/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/group/views.py" afterPath="$PROJECT_DIR$/group/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/search/templates/search/search.html" afterPath="$PROJECT_DIR$/search/templates/search/search.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recipe/views.py" afterPath="$PROJECT_DIR$/recipe/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/search/views.py" afterPath="$PROJECT_DIR$/search/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cookzilla.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,16 +27,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/recipe/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="16" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/models.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -70,11 +37,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="search.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/search/templates/search/search.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.172414">
+              <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/search/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/recipe/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.3564014">
-              <caret line="97" column="32" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.41247833">
+              <caret line="191" column="60" selection-start-line="191" selection-start-column="60" selection-end-line="191" selection-end-column="60" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -82,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="recipe.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/recipe.html">
+      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/templates/main/header.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.275862">
-              <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+            <state vertical-scroll-proportion="-12.413794">
+              <caret line="54" column="15" selection-start-line="54" selection-start-column="15" selection-end-line="54" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -112,7 +99,6 @@
         <option value="$PROJECT_DIR$/account/forms.py" />
         <option value="$PROJECT_DIR$/account/templates/account/groups.html" />
         <option value="$PROJECT_DIR$/account/templates/account/reviews.html" />
-        <option value="$PROJECT_DIR$/search/views.py" />
         <option value="$PROJECT_DIR$/main/templates/main/signup.html" />
         <option value="$PROJECT_DIR$/main/forms.py" />
         <option value="$PROJECT_DIR$/event/templates/event/event_detail.html" />
@@ -121,8 +107,6 @@
         <option value="$PROJECT_DIR$/recipe/urls.py" />
         <option value="$PROJECT_DIR$/account/views.py" />
         <option value="$PROJECT_DIR$/main/urls.py" />
-        <option value="$PROJECT_DIR$/search/templates/search/search.html" />
-        <option value="$PROJECT_DIR$/main/templates/main/header.html" />
         <option value="$PROJECT_DIR$/recipe/templates/recipe/new_recipe.html" />
         <option value="$PROJECT_DIR$/recipe/forms.py" />
         <option value="$PROJECT_DIR$/main/views.py" />
@@ -134,8 +118,11 @@
         <option value="$PROJECT_DIR$/group/models.py" />
         <option value="$PROJECT_DIR$/search/models.py" />
         <option value="$PROJECT_DIR$/recipe/models.py" />
-        <option value="$PROJECT_DIR$/recipe/templates/recipe/recipe.html" />
         <option value="$PROJECT_DIR$/db/models.py" />
+        <option value="$PROJECT_DIR$/recipe/templates/recipe/recipe.html" />
+        <option value="$PROJECT_DIR$/search/views.py" />
+        <option value="$PROJECT_DIR$/search/templates/search/search.html" />
+        <option value="$PROJECT_DIR$/main/templates/main/header.html" />
         <option value="$PROJECT_DIR$/recipe/views.py" />
       </list>
     </option>
@@ -146,7 +133,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="726" />
+    <option name="height" value="725" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -215,6 +202,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="search" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="search" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cookzilla" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cookzilla" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="recipe" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -238,20 +247,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="recipe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cookzilla" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cookzilla" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="media" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -279,35 +274,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="group" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cookzilla" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cookzilla" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cookzilla" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cookzilla" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -315,35 +282,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="event" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cookzilla" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cookzilla" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cookzilla" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cookzilla" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cookzilla" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -501,7 +440,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="726" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="725" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -654,52 +593,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/search/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.05610561">
-          <caret line="54" column="20" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/recipe/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1650165">
           <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/search/templates/search/search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41594455">
-          <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2310231">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/search/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/main/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13864818">
-          <caret line="39" column="35" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -744,14 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/new_recipe.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17331022">
-          <caret line="5" column="43" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/account/templates/account/profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.89254767">
@@ -783,16 +672,6 @@
         <state vertical-scroll-proportion="0.3960396">
           <caret line="83" column="16" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.660066">
-          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -870,8 +749,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/recipe.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.275862">
-          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.41594455">
+          <caret line="55" column="61" selection-start-line="55" selection-start-column="61" selection-end-line="55" selection-end-column="61" />
           <folding />
         </state>
       </provider>
@@ -884,10 +763,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2310231">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8679868">
+          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/new_recipe.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.42114386">
+          <caret line="5" column="43" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search/templates/search/search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.172414">
+          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.413794">
+          <caret line="54" column="15" selection-start-line="54" selection-start-column="15" selection-end-line="54" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/recipe/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.3564014">
-          <caret line="97" column="32" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.41247833">
+          <caret line="191" column="60" selection-start-line="191" selection-start-column="60" selection-end-line="191" selection-end-column="60" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>

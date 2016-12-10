@@ -174,22 +174,25 @@ def new_recipe(request):
 				ingredient.save()
 
 			# saven tag to db
+			tag_list =[]
 			if tags :
 				if tags[0] == '1' :
-					tags = 'Cake'
-				elif tags[0] == 2 :
-					tags = 'Bread'
-				elif tags[0] == 3 :
-					tags = 'Itali food'
-				elif tags[0] == 4 :
-					tags = 'Chinese food'
-				else :
-					tags = 'Korea food'
+					tag_list.append('Cake')
+				if tags[0] == '2' :
+					tag_list.append('Bread')
+				if tags[0] == '3' :
+					tag_list.append('Itali_food')
+				if tags[0] == '4' :
+					tag_list.append('Chinese_food')
+				if tags[0] == '5':
+					tag_list.append('Korea_food')
 
-				# get current last id
-				last_id = Tag.objects.all().latest('id')
-				tag = Tag(id = last_id.id+1, tname = tags, rid = recipe)
-				tag.save()
+				for element in tag_list:
+					# get current last id
+					last_id = Tag.objects.all().latest('id')
+					tag = Tag(id = last_id.id+1, tname = element, rid = recipe)
+					tag.save()
+
 
 			return HttpResponseRedirect(reverse('recipes'))
 

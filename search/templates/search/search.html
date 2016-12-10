@@ -7,13 +7,13 @@
 		<h2>This is Search {{ search_type }} page!</h2><br>
 		<a class="btn btn-lg btn-success" href="{% url 'home' %}" role="button">Home</a>
 
-		{% if result_tag %}
+		{% if tag_set %}
 		<section>
 			<h2 class="page-header">Recipe : </h2>
 			<hr class="divider">
 			<div class="margin-bottom">
-				{% for obj in result_tag %}
-				<h3><a href="#"> {{obj.rtitle}}</a></h3>
+				{% for obj in tag_set %}
+				<h3><a href="/recipe/{{obj.rid.rid}}"> {{obj.rid.rtitle}}</a></h3>
 				<h4>Content is here!</h4>
 				{% endfor %}
 			</div>

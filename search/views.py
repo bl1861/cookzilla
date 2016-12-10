@@ -35,14 +35,12 @@ def search_tag(request, keyword):
 		client = request.session['username']
 		context['username'] = client
 		context['login'] = True
-		# get the Queryset of tags
-		result_tag = Tag.objects.filter(tname__icontains=keyword)
-		arr = []
-		for tag in result_tag:
-			arr.append(tag.rid)
 
-		context['result_tag'] = arr
 
+	# get the Queryset of tag for the keyword
+	tag_set = Tag.objects.filter(tname=keyword)
+	context['keyword'] = keyword
+	context['tag_set'] = tag_set
 	return render(request, 'search/search.html', context)
 
 
