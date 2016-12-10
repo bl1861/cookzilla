@@ -46,14 +46,21 @@
 			<hr class="divider">
 		{% for key , value in recipe_dictionary.items %}
 			{% if key == "review" %}
-				{% for obj in value %}
+				{% for k_review, v_photo in value.items %}
 			<div class="margin-bottom">
-				<h3>{{obj.rwtitle}}</h3>
-				<h4>{{obj.rwcontext}}</h4>
+
+				<h3>{{k_review.rwtitle}}</h3>
+				<h4>{{k_reviewbj.rwcontext}}</h4>
+				<h4>{{k_review.suggestion}}</h4>
+				<h1>{{k_review.rating}}</h1>
 				<div class="row">
 					<div class="col-xs-6 col-sm-4 placeholder">
-		              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
-		            </div>
+					  {% if v_photo.rw_photo %}
+		              <img src="{{v_photo.rw_photo.url}}" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+		              {% else %}
+					  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+					  {% endif %}
+					</div>
 		        </div>
 			</div>
 			<hr class="divider">
@@ -64,18 +71,26 @@
 
 		<!-- Review by user -->
 		<section>
-			<form method="POST" action=""> {% csrf_token %}
-				<label class="form-report" for="review_text">Your Review</label>
-			    <textarea class="form-control form-textarea" id="review_text" rows="3" name="review_text"></textarea>
-			    <label class="form-margin-top" for="review_pic">Picture</label>
-		    	<input type="file" class="form-control-file" id="review_pic" aria-describedby="fileHelp" name="review_pic">
+			<form enctype="multipart/form-data" method="POST" action=""> {% csrf_token %}
+				<label class="form-report" for="review_context">Your Review</label><br>
+				<label class="form-margin-top" >Title : </label>
+				<input type="text" name="review_title"><br>
+				<label class="form-margin-top" >Content : </label>
+			    <textarea class="form-control form-textarea" id="review_context" rows="3" name="review_context"></textarea>
+				<label class="form-margin-top" >Suggestion : </label>
+				<textarea class="form-control form-textarea" id="review_suggestion" rows="2" name="review_suggestion"></textarea>
+				<label class="form-margin-top" >Rating : </label>
+				<input type="text" name="review_rating"><br>
+
+			    <label class="form-margin-top" for="review_photo">Picture</label>
+		    	<input type="file" class="form-control-file" id="review_photo" aria-describedby="fileHelp" name="review_photo">
 			    <input class="btn btn-primary form-margin-top" type="submit" >
 			</form>
 		</section>
 
 		<!-- Related links -->
 		<section>
-			<h2 class="page-header">Related: </h2>
+			<h2 class="page-header">Related Recipes: </h2>
 		{% for key , value in recipe_dictionary.items %}
 			{% if key == "relate" %}
 				{% for tag, recipe in value.items %}
@@ -86,7 +101,6 @@
 			{% endif %}
 		{% endfor %}
 		</section>
-
 
 
 	</div>

@@ -1,6 +1,13 @@
-from django.db import models
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
+from __future__ import unicode_literals
 
-# Create your models here.
+from django.db import models
 
 
 class User(models.Model):
@@ -9,6 +16,7 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     udescription = models.CharField(max_length=200, blank=True, null=True)
     ufile = models.FileField(blank=True, null=True)
+    uphoto = models.FileField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -177,7 +185,7 @@ class Ingredient(models.Model):
         db_table = 'ingredient'
 
 
-class Photo(models.Model):
+'''class Photo(models.Model):
     pid = models.AutoField(primary_key=True)
     pname = models.CharField(max_length=50, blank=True, null=True)
     img = models.BinaryField(blank=True, null=True)
@@ -185,7 +193,7 @@ class Photo(models.Model):
     class Meta:
         managed = False
         db_table = 'photo'
-
+'''
 
 class Recipe(models.Model):
     rid = models.AutoField(primary_key=True)
@@ -193,6 +201,8 @@ class Recipe(models.Model):
     rcontent = models.CharField(max_length=200, blank=True, null=True)
     rserving = models.IntegerField(blank=True, null=True)
     uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname', blank=True, null=True)
+    rtime = models.DateField()
+    rphoto = models.FileField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -221,18 +231,19 @@ class Report(models.Model):
 
 
 class ReportPhoto(models.Model):
-    pid = models.ForeignKey(Photo, models.DO_NOTHING, db_column='pid')
     rpid = models.ForeignKey(Report, models.DO_NOTHING, db_column='rpid')
+    rp_photo_name = models.CharField(max_length=50, blank=True, null=True)
+    rp_photo = models.FileField(blank=True)
 
     class Meta:
         managed = False
         db_table = 'report_photo'
-        unique_together = (('rpid', 'pid'),)
+        unique_together = (('rpid', 'rp_photo_name'),)
 
 
 class Review(models.Model):
     rwid = models.AutoField(primary_key=True)
-    uname = models.CharField(max_length=50, blank=True, null=True)
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='review_uname')
     rwtitle = models.CharField(max_length=100, blank=True, null=True)
     rwcontext = models.CharField(max_length=200, blank=True, null=True)
     suggestion = models.CharField(max_length=100, blank=True, null=True)
@@ -245,13 +256,14 @@ class Review(models.Model):
 
 
 class ReviewPhoto(models.Model):
-    pid = models.ForeignKey(Photo, models.DO_NOTHING, db_column='pid')
     rwid = models.ForeignKey(Review, models.DO_NOTHING, db_column='rwid')
+    rw_photo_name = models.CharField(max_length=50, blank=True, null=True)
+    rw_photo = models.FileField(blank=True)
 
     class Meta:
         managed = False
         db_table = 'review_photo'
-        unique_together = (('rwid', 'pid'),)
+        unique_together = (('rwid', 'rw_photo_name'),)
 
 
 class Rsvp(models.Model):
@@ -272,4 +284,3 @@ class Tag(models.Model):
         managed = False
         db_table = 'tag'
         unique_together = (('rid', 'tname'),)
-

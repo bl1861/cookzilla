@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from .models import User,Conversion,Rsvp,Egroup,Event,GroupUser,Ingredient,Photo,Recipe,Related,Report,ReportPhoto,Review,ReviewPhoto,Tag
+from .models import User,Conversion,Rsvp,Egroup,Event,GroupUser,Ingredient,Recipe,Related,Report,ReportPhoto,Review,ReviewPhoto,Tag
 from django.http import HttpResponse
 from django.db import connection
 
@@ -132,26 +132,32 @@ def update(request):
     '''cursor.execute("INSERT INTO _User VALUES ( 'K.Smith', 'smith', '23456', 'good')")
     cursor.execute("INSERT INTO _User VALUES ( 'Bob','bb', '3456', 'nothing to say')")
     cursor.execute("INSERT INTO _User VALUES ( 'Michael Jack', 'Michael', '87654', 'I like to cook!')")
-    cursor.execute("CREATE SEQUENCE serial_rr START 3")
-    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'cheese cake','Preheat oven to 325 degrees. For the filling, use your mixers lowest speed',2,'K.Smith')")
-    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'apple pie','Make the dough by hand. In a medium bowl, whisk together the flour, sugar, and salt',3,'Michael Jack')")
-    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'fried noodle','Bring a large pot of lightly salted water to a boil. Cook the egg noodles in the boiling water until the pasta is tender yet firm to the bite, about 5 minutes. Drain',2,'Bob')")
-    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'beef pasta','Cook over medium heat for 5 minutes to slightly reduce. Add chopped spinach; cover skillet and simmer on reduced heat until spinach is tender',5,'Rubby')")
-    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'beef pasta','Use broccoli to make this pasta more delicious',5,'Rubby')")
-    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'Tuna Patties','These tuna patties is special!',5,'Bob')")
-    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rr'),'Grandma’s Fettuccini Alfredo','If you sift a little bit of cornstarch into your shredded cheese, and squeeze some fresh lemon juice into the sauce,it will become nice and creamy',5,'Michael Jack')")
+    cursor.execute("CREATE SEQUENCE serial_rk START 1")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rk'),'cheese cake','Preheat oven to 325 degrees. For the filling, use your mixers lowest speed',2,'2016-10-09 12:15:24',null,'K.Smith')")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rk'),'apple pie','Make the dough by hand. In a medium bowl, whisk together the flour, sugar, and salt',3,'2016-10-09 12:15:24',null,'Michael Jack')")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rk'),'fried noodle','Bring a large pot of lightly salted water to a boil. Cook the egg noodles in the boiling water until the pasta is tender yet firm to the bite, about 5 minutes. Drain',2,'2016-10-09 12:15:24',null,'Bob')")
+    cursor.execute("INSERT INTO _User VALUES ( 'Rubby', 'rbb', '23456', 'I like to cook!')")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rk'),'beef pasta','Cook over medium heat for 5 minutes to slightly reduce. Add chopped spinach; cover skillet and simmer on reduced heat until spinach is tender',5,'2016-10-09 12:15:24',null,'Rubby')")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rk'),'beef pasta','Use broccoli to make this pasta more delicious',5,'2016-10-09 12:15:24',null,'Rubby')")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rk'),'Tuna Patties','These tuna patties is special!',5,'2016-10-09 12:15:24',null,'Bob')")
+    cursor.execute("INSERT INTO Recipe VALUES(nextval('serial_rk'),'Grandma’s Fettuccini Alfredo','If you sift a little bit of cornstarch into your shredded cheese, and squeeze some fresh lemon juice into the sauce,it will become nice and creamy',5,'2016-10-09 12:15:24',null,'Michael Jack')")
+    cursor.execute("INSERT INTO Recipe VALUES(1,'Grandma’s Fettuccini Alfredo','If you sift a little bit of cornstarch into your shredded cheese, and squeeze some fresh lemon juice into the sauce,it will become nice and creamy',5,'2016-10-09 12:15:24',null,'Michael Jack')")
+    cursor.execute("INSERT INTO Tag VALUES(1,'dessert',1)")
     cursor.execute("INSERT INTO Tag VALUES(2,'dessert',2)")
     cursor.execute("INSERT INTO Tag VALUES(3,'cake',2)")
     cursor.execute("INSERT INTO Tag VALUES(4,'low fat',2)")
     cursor.execute("INSERT INTO Tag VALUES(5,'dessert',3)")
     cursor.execute("INSERT INTO Tag VALUES(6,'Vegan',3)")
     cursor.execute("INSERT INTO Tag VALUES(7,'low fat',3)")
+    cursor.execute("INSERT INTO Recipe VALUES(4,'Grandma’s Fettuccini Alfredo','If you sift a little bit of cornstarch into your shredded cheese, and squeeze some fresh lemon juice into the sauce,it will become nice and creamy',5,'2016-10-09 12:15:24',null,'Michael Jack')")
+    cursor.execute("INSERT INTO Recipe VALUES(6,'Grandma’s Fettuccini Alfredo','If you sift a little bit of cornstarch into your shredded cheese, and squeeze some fresh lemon juice into the sauce,it will become nice and creamy',5,'2016-10-09 12:15:24',null,'Michael Jack')")
     cursor.execute("INSERT INTO Tag VALUES(8,'beef',4)")
     cursor.execute("INSERT INTO Tag VALUES(9,'Asian',4)")
     cursor.execute("INSERT INTO Tag VALUES(10,'Italian',5)")
     cursor.execute("INSERT INTO Tag VALUES(11,'Healthy',5)")
     cursor.execute("INSERT INTO Tag VALUES(12,'Quick meal',5)")
     cursor.execute("INSERT INTO Tag VALUES(13,'Italian',6)")
+    cursor.execute("INSERT INTO Ingredient VALUES(1,'egg',50.0,'ml',60.0,1)")
     cursor.execute("INSERT INTO Ingredient VALUES(2,'cream',50.0,'ml',60.0,1)")
     cursor.execute("INSERT INTO Ingredient VALUES(3,'eggs',2.0,'pc',5.0,1)")
     cursor.execute("INSERT INTO Ingredient VALUES(4,'butter',30.0,'grams',30.0,1)")
@@ -172,11 +178,17 @@ def update(request):
     cursor.execute("update egroup set gname='health diet' where gid=2")
     cursor.execute("update egroup set gname='Love cheese cake !' where gid=3")
     cursor.execute("update event set ename='how to cook effecienty',etime='2016-10-09 14:00:00' where eid=2")
-    cursor.execute("update event set ename='new recipe for cake',etime='2016-10-09 11:12:00' where eid=3")'''
-
+    cursor.execute("update event set ename='new recipe for cake',etime='2016-10-09 11:12:00' where eid=3")
+    cursor.execute("INSERT INTO egroup VALUES(1,'cook')")
+    cursor.execute("INSERT INTO egroup VALUES(2,'happy')")
+    cursor.execute("INSERT INTO egroup VALUES(3,'case')")
+    cursor.execute("INSERT INTO event VALUES(1,'testt','2016-10-09 11:12:00',1)")
+    cursor.execute("INSERT INTO event VALUES(2,'testt','2016-10-09 11:12:00',1)")
+    cursor.execute("INSERT INTO event VALUES(3,'testt','2016-10-09 11:12:00',1)")
+    cursor.execute("INSERT INTO rsvp VALUES(1,3,'Rubby')")
     cursor.execute("INSERT INTO rsvp VALUES(2,1,'Rubby')")
-    cursor.execute("INSERT INTO rsvp VALUES(3,2,'Rubby')")
-    cursor.execute("INSERT INTO rsvp VALUES(4,3,'Rubby')")
+    cursor.execute("INSERT INTO rsvp VALUES(3,2,'Rubby')")'''
+
 
     result = 'update db successfully'
 
