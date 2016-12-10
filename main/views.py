@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import UserForm
 from django.urls import reverse
-from db.models import User,Conversion,Rsvp,Egroup,Event,GroupUser,Ingredient,Photo,Recipe,Related,Report,ReportPhoto,Review,ReviewPhoto,Tag
+from db.models import User,Conversion,Rsvp,Egroup,Event,GroupUser,Ingredient,Recipe,Related,Report,ReportPhoto,Review,ReviewPhoto,Tag
 from .forms import UploadFileForm
 from django.db import connection
 

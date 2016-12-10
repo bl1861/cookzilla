@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .forms import RecipeForm
+from .forms import RecipeForm, ReviewForm
 from django.urls import reverse
-from .models import User, Recipe, Egroup, Event, Rsvp, Tag, Review, Ingredient
+from .models import User, Recipe, Egroup, Event, Rsvp, Tag, Review, Ingredient, ReviewPhoto
 import datetime
 
 # Create your views here.
@@ -22,7 +22,15 @@ def recipe(request, id):
 
 	# get Review Queryset
 	reviews = Review.objects.filter(rid__rid = id)
-	recipe_dictionary['review'] = reviews
+	rw_dictionary = {}
+	for rw in reviews:
+		rwpicture = ReviewPhoto.objects.filter(rwid__rwid = rw.rwid)
+		if rwpicture :
+			rw_dictionary[rw] = rwpicture[0]
+		else:
+			rw_dictionary[rw] = None
+
+	recipe_dictionary['review'] = rw_dictionary
 
 	# get Ingredient Queryset
 	ingredients = Ingredient.objects.filter(rid__rid = id)
@@ -47,7 +55,46 @@ def recipe(request, id):
 
 	recipe_dictionary['relate'] = relate_dictionary
 	context = {'account_item': 'Recipes', 'login': True , 'recipe_dictionary': recipe_dictionary}
+
+	# if this is a POST request, we need to process the form data.
+	if request.method == "POST":
+		# get username login name
+		client= request.session['username']
+
+		form = ReviewForm(request.POST, request.FILES)
+		if form.is_valid():
+			print('review_post_valid')
+			review_title = form.cleaned_data.get('review_title')
+			review_context = form.cleaned_data.get('review_context')
+
+			# get current last rid
+			if Review.objects.all():
+				last_rwid = Review.objects.all().latest('rwid')
+			else :
+				last_rwid = 0
+
+			# constrct the review model
+			review = Review(rwid = last_rwid.rwid+1, uname = User.objects.get(uname=client), rwtitle= review_title, rwcontext = review_context, rid = recipe[0])
+
+			if 'review_suggestion' :
+				review.suggestion = form.cleaned_data.get('review_suggestion')
+			if 'review_rating' :
+				review.rating = form.cleaned_data.get('review_rating')
+			else :
+				review.rating =0
+			# save to db
+			review.save()
+
+			# if user attach file, get the file and save to db
+			if 'review_photo' :
+				review_photo = form.cleaned_data.get('review_photo')
+				rwphoto = ReviewPhoto(rwid = review, rw_photo = review_photo)
+				rwphoto.save()
+				rwphoto.rw_photo_name = rwphoto.rw_photo.name
+				rwphoto.save()
+
 	context['username'] = client
+
 	return render(request, 'recipe/recipe.html', context)
 
 
@@ -68,7 +115,6 @@ def new_recipe(request):
 		print (request.FILES)
 
 		# if the form is valid, then do something
-
 		if form.is_valid():
 
 			# TODO: save the recipe here!

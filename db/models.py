@@ -69,14 +69,14 @@ class Ingredient(models.Model):
         db_table = 'ingredient'
 
 
-class Photo(models.Model):
+'''class Photo(models.Model):
     pid = models.AutoField(primary_key=True)
     pname = models.CharField(max_length=50, blank=True, null=True)
     img = models.BinaryField(blank=True, null=True)
 
     class Meta:
         db_table = 'photo'
-
+'''
 
 class Recipe(models.Model):
     rid = models.AutoField(primary_key=True)
@@ -88,6 +88,7 @@ class Recipe(models.Model):
     rphoto = models.FileField(blank=True, null=True)
 
     class Meta:
+
         db_table = 'recipe'
 
 
@@ -107,22 +108,24 @@ class Report(models.Model):
     rdescription = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
+
         db_table = 'report'
 
 
 class ReportPhoto(models.Model):
     rpid = models.ForeignKey(Report, models.DO_NOTHING, db_column='rpid')
-    pid = models.ForeignKey(Photo, models.DO_NOTHING, db_column='pid')
+    rp_photo_name = models.CharField(max_length=50, blank=True, null=True)
+    rp_photo = models.FileField(blank=True, null=True)
 
     class Meta:
         db_table = 'report_photo'
-        unique_together = (('rpid', 'pid'),)
+        unique_together = (('rpid', 'rp_photo_name'),)
 
 
 class Review(models.Model):
     rwid = models.AutoField(primary_key=True)
     rid = models.ForeignKey(Recipe, models.DO_NOTHING, db_column='rid',related_name='review_rid', blank=True, null=True)
-    uname = models.CharField(max_length=50, blank=True, null=True)
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='review_uname')
     rwtitle = models.CharField(max_length=100, blank=True, null=True)
     rwcontext = models.CharField(max_length=200, blank=True, null=True)
     suggestion = models.CharField(max_length=100, blank=True, null=True)
@@ -134,11 +137,13 @@ class Review(models.Model):
 
 class ReviewPhoto(models.Model):
     rwid = models.ForeignKey(Review, models.DO_NOTHING, db_column='rwid')
-    pid = models.ForeignKey(Photo, models.DO_NOTHING, db_column='pid')
+    rw_photo_name = models.CharField(max_length=50, blank=True, null=True)
+    rw_photo = models.FileField(blank=True, null=True)
 
     class Meta:
+
         db_table = 'review_photo'
-        unique_together = (('rwid', 'pid'),)
+        unique_together = (('rwid', 'rw_photo_name'),)
 
 
 class Rsvp(models.Model):

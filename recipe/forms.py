@@ -33,3 +33,11 @@ class RecipeForm(forms.Form):
 
     recipe_photo = forms.FileField(required=False)
 
+
+class ReviewForm(forms.Form):
+
+    review_title = forms.CharField(label="review_title", max_length=50)
+    review_context = forms.CharField(label="review_context", max_length=300)
+    review_suggestion = forms.CharField(label="review_suggestion",required=False)
+    review_rating = forms.IntegerField(required=False)
+    review_photo = forms.FileField(required=False)
