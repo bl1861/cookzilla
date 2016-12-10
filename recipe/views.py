@@ -92,7 +92,7 @@ def recipe(request, id):
 				rwphoto.save()
 				rwphoto.rw_photo_name = rwphoto.rw_photo.name
 				rwphoto.save()
-
+			return HttpResponseRedirect("/recipe/%s/" % id)
 
 	return render(request, 'recipe/recipe.html', context)
 

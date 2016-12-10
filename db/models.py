@@ -127,8 +127,8 @@ class Review(models.Model):
     rid = models.ForeignKey(Recipe, models.DO_NOTHING, db_column='rid',related_name='review_rid', blank=True, null=True)
     uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='review_uname')
     rwtitle = models.CharField(max_length=100, blank=True, null=True)
-    rwcontext = models.CharField(max_length=200, blank=True, null=True)
-    suggestion = models.CharField(max_length=100, blank=True, null=True)
+    rwcontext = models.CharField(max_length=300, blank=True, null=True)
+    suggestion = models.CharField(max_length=300, blank=True, null=True)
     rating = models.IntegerField(blank=True, null=True)
 
     class Meta:
