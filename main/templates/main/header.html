@@ -62,7 +62,7 @@
           {% endif %}
 
           {% if login %}
-          <a class="btn btn-info" href="{% url 'profile' %}" role="button">Account</a>
+          <a class="btn btn-info" href="{% url 'profile' %}" role="button">{{username}}</a>
           <a class="btn btn-danger" href="{% url 'logout' %}" role="button">Sign out</a>
           {% endif %}
 	      </div>
@@ -75,7 +75,7 @@
               </select>
             </div>
             <div class="input-group">
-              <input type="text" class="form-control" aria-label="..." placeholder="Search..." name='keyword'>
+              <input type="text" class="form-control" aria-label="..." placeholder="Search Recipe" name='keyword'>
               <div class="input-group-btn">
                 <button class="btn btn-default" type="submit">Go!</button>
               </div>

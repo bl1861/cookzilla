@@ -11,7 +11,7 @@ def recipe(request, id):
 	if 'username' in request.session:
 		context['login'] = True
 
-	#client= request.session['username']
+	client= request.session['username']
 
 	# create dictrionary of corresponding review & ingredient for thos recipe
 	recipe_dictionary = {}
@@ -92,8 +92,10 @@ def recipe(request, id):
 				rwphoto.save()
 				rwphoto.rw_photo_name = rwphoto.rw_photo.name
 				rwphoto.save()
+
 			return HttpResponseRedirect("/recipe/%s/" % id)
 
+	context['username'] = client
 	return render(request, 'recipe/recipe.html', context)
 
 
@@ -102,12 +104,11 @@ def new_recipe(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
+	# get username login name
+	client= request.session['username']
 
 	# if this is a POST request, we need to process the form data.
 	if request.method == "POST":
-		# get username login name
-		client= request.session['username']
-
 
 		# print (request.POST['tags'])
 		# create a form instancee and populate it with data from the request.
@@ -193,5 +194,6 @@ def new_recipe(request):
 			return HttpResponseRedirect(reverse('recipes'))
 
 	context = {'login': True}
+	context['username'] = client
 	return render(request, 'recipe/new_recipe.html', context)
 

@@ -7,12 +7,17 @@
 		<section>
 			<div class="page-header">
 				<span class="section-header">Event Information:</span>
-				<form class="inline section-header" method="POST">
-					<input class="btn btn-primary" type="submit" value="RSVP"></input>
+				{% if not isRSVP %}
+				<form class="inline section-header" method="POST" action=""> {% csrf_token %}
+					<input class="btn btn-success" type="submit" value="RSVP"></input>
 				</form>
-				<form class="inline section-header" action="">
-					<input class="btn btn-success" type="submit" value="Joined"></input>
+				{% endif %}
+				{% if isRSVP %}
+				<form class="inline section-header">
+					<span class="label label-default">RSVPed</span>
 				</form>
+				{% endif %}
+
 			</div>
 			<p>Title: {{dbevent.ename}}</p>
 			<p>Time: {{dbevent.etime}}</p>

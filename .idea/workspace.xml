@@ -2,9 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="523ce428-9eab-472f-b90c-2c567174ef31" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/models.py" afterPath="$PROJECT_DIR$/db/models.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/group/templates/group/new_group.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/BinghaoLI-Resume.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/IMG_0092.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/IMG_0092_DSatiCL.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/IMG_0095.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/IMG_0590.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/IMG_0590_Hzv9XxC.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/IMG_4864.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/f2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/gel.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/gel_XdxDscF.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/gel_rDBjHcY.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/ps1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/raw.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/raw_RL9rshf.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/weather.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/static/main/css/cookzilla_custom.css" afterPath="$PROJECT_DIR$/main/static/main/css/cookzilla_custom.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event/templates/event/event_detail.html" afterPath="$PROJECT_DIR$/event/templates/event/event_detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/group/templates/group/group_all.html" afterPath="$PROJECT_DIR$/group/templates/group/group_all.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account/templates/account/groups.html" afterPath="$PROJECT_DIR$/account/templates/account/groups.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/header.html" afterPath="$PROJECT_DIR$/main/templates/main/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account/templates/account/profile.html" afterPath="$PROJECT_DIR$/account/templates/account/profile.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recipe/templates/recipe/recipe.html" afterPath="$PROJECT_DIR$/recipe/templates/recipe/recipe.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account/views.py" afterPath="$PROJECT_DIR$/account/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event/views.py" afterPath="$PROJECT_DIR$/event/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/group/views.py" afterPath="$PROJECT_DIR$/group/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recipe/views.py" afterPath="$PROJECT_DIR$/recipe/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/search/views.py" afterPath="$PROJECT_DIR$/search/views.py" />
     </list>
     <ignored path="cookzilla.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,21 +60,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6171617">
+            <state vertical-scroll-proportion="0.0">
               <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/recipe/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.714286">
-              <caret line="94" column="59" selection-start-line="94" selection-start-column="59" selection-end-line="94" selection-end-column="59" />
+            <state vertical-scroll-proportion="3.3564014">
+              <caret line="97" column="32" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="32" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -61,7 +86,7 @@
         <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/recipe.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-8.275862">
-              <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
+              <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -110,8 +135,8 @@
         <option value="$PROJECT_DIR$/search/models.py" />
         <option value="$PROJECT_DIR$/recipe/models.py" />
         <option value="$PROJECT_DIR$/recipe/templates/recipe/recipe.html" />
-        <option value="$PROJECT_DIR$/recipe/views.py" />
         <option value="$PROJECT_DIR$/db/models.py" />
+        <option value="$PROJECT_DIR$/recipe/views.py" />
       </list>
     </option>
   </component>
@@ -621,11 +646,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/media/gel.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/account/templates/account/recipes.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0797227">
@@ -851,26 +871,26 @@
     <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/recipe.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.275862">
-          <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
+          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/recipe/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.714286">
-          <caret line="94" column="59" selection-start-line="94" selection-start-column="59" selection-end-line="94" selection-end-column="59" />
+        <state vertical-scroll-proportion="3.3564014">
+          <caret line="97" column="32" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="32" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6171617">
-          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
