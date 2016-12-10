@@ -8,10 +8,12 @@ from .models import User, GroupUser, Event, Egroup, Rsvp
 def group_all(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
-	context = {'account_item': 'Groups', 'login': True, 'group_dict': {}}
-	
+
 	# get username login name
 	client = request.session['username']
+
+	context = {'account_item': 'Groups', 'login': True, 'group_dict': {}}
+	context['username'] = client
 
 	'''# query from db
 	cursor = connection.cursor()
@@ -57,7 +59,6 @@ def group_all(request):
 
 	return render(request, 'group/group_all.html', context)
 
-## This is old version of group
 def join_group(request, id):
 		
 	if request.method == "POST":
@@ -70,10 +71,6 @@ def join_group(request, id):
 			HttpResponseRedirect(reverse('login'))
 
 	return HttpResponseRedirect(reverse('group_all'))
-
-
-
-
 
 
 

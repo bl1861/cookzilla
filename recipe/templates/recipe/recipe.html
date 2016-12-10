@@ -28,16 +28,18 @@
 			{% endif %}
 		{% endfor %}
 
-				<p>Ingredients:
+		<p>Ingredients:</p>
 		{% for key , value in recipe_dictionary.items %}
 			{% if key == "ingredient" %}
 				{% for obj in value %}
-				  <button class="btn btn-default">{{obj.iname}}</button>
+					  <h4 class="btn btn-default">
+					  	<span>{{obj.iname}} </span>
+					  	<span>{{obj.quantity}} </span>
+					  	<span>{{obj.cunit}} </span>
+					  </h4>
 				{% endfor %}
 			{% endif %}
 		{% endfor %}
-				</p>
-
 		</section>
 
 		<!-- Reviews from users -->

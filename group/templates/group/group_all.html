@@ -26,11 +26,7 @@
 				<div class="margin-bottom">
 					<!-- This is event name -->
 					<h3>
-						<a href="{% url 'event' id=ev.eid %}">{{ev.ename}}</a> 
-						<!-- This is to show RSVP tag-->
-						{% if rsvp %}
-						<span class="label label-default">RSVP</span>
-						{% endif %}
+						<a href="{% url 'event' id=ev.eid %}">{{ev.ename}}</a>
 					</h3>
 					<h4>{{ev.etime}}</h4>
 				</div>

@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.db import connection
 from .models import User, Recipe, Egroup, Event, Rsvp, GroupUser, Review
 from .forms import NewGroupForm, NewEventForm
-
+from datetime import datetime
 
 
 # Abstract:
@@ -28,18 +28,17 @@ def profile(request):
 
 	dbuser = User.objects.get(uname = client)
 	context = {'account_item': 'My Profile', 'login': True, 'dbuser':dbuser}
-
+	context['username'] = client
 	return render(request, 'account/profile.html', context)
 
 
 def groups(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
-
-	context = {'account_item': 'Groups', 'login': True, 'group_dict': {}}
-
 	# get username login name
 	client= request.session['username']
+	context = {'account_item': 'Groups', 'login': True, 'group_dict': {}}
+	context['username'] = client
 
 	# if this is a POST request, handle the input
 	if request.method == "POST":
@@ -54,7 +53,7 @@ def groups(request):
 			# create new instance of group_user and save to db
 			join_group = GroupUser(uname=User.objects.get(uname=client),gid=new_group)
 			join_group.save()
-			print('create successfully !')
+			print('create group successfully !')
 
 	'''# query from db
 	cursor = connection.cursor()
@@ -84,7 +83,6 @@ def groups(request):
 		group_event_rsvp_dict[group_obj] = event_rsvp_dict
 
 	context['group_dict'] = group_event_rsvp_dict
-
 	return render(request, 'account/groups.html', context)
 
 
@@ -92,8 +90,9 @@ def events(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'account_item': 'Events', 'login': True, 'event': []}
 	client= request.session['username']
+	context = {'account_item': 'Events', 'login': True, 'event': []}
+	context['username'] = client
 
 	# query from db
 	cursor = connection.cursor()
@@ -112,8 +111,9 @@ def rsvps(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
+	client = request.session['username']
 	context = {'account_item': 'Events', 'login': True, 'ename': []}
-	client= request.session['username']
+	context['username'] = client
 
 	# query from db
 	cursor = connection.cursor()
@@ -127,6 +127,8 @@ def rsvps(request):
 
 	return render(request, 'account/RSVPs.html', context)
 
+
+
 def reviews(request):
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
@@ -135,7 +137,11 @@ def reviews(request):
 	reviews = Review.objects.filter(uname=client)
 
 	context = {'account_item': 'Reviews', 'login': True, 'reviews': reviews}
+	context['username'] = client
 	return render(request, 'account/reviews.html', context)
+
+
+
 
 def recipes(request):
 	if 'username' not in request.session:
@@ -145,27 +151,33 @@ def recipes(request):
 	# get the recipe from this user
 	recipe = Recipe.objects.filter(uname = client)
 	context = {'account_item': 'Recipes', 'login': True , 'recipe':recipe}
+	context['username'] = client
 
 	return render(request, 'account/recipes.html', context)
 
 
 def new_event(request, id):
-	print ("new_event gid = ", id)
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
 
-	context = {'account_item': 'Groups', 'login': True, 'group_dict': {}}
 	# get username login name
 	client= request.session['username']
+
+	context = {'account_item': 'Groups', 'login': True, 'group_dict': {}}
+	context['username'] = client
 
 	# if this is a POST request, handle the input
 	if request.method == "POST":
 		form = NewEventForm(request.POST)
 		# if is valid ,create new group and save to database
 		if form.is_valid():
-			print('is_valid')
-		else:
-			print('not_valid')
+  			etime = form.cleaned_data.get('event_time').strftime('%Y-%m-%d %H:%M')
+  			ename = form.cleaned_data.get('event_name')
+  			# create new instance of Event and save to db
+  			new_event = Event(etime=etime, ename=ename, gid=Egroup.objects.get(gid=id))
+  			new_event.save()
+  			print ("new event created successfully!")
+
 
 	return HttpResponseRedirect(reverse("groups"))
 

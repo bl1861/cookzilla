@@ -32,8 +32,9 @@ def search(request):
 def search_tag(request, keyword):
 	context = {'login': False, 'search_type': 'tag'}
 	if 'username' in request.session:
+		client = request.session['username']
+		context['username'] = client
 		context['login'] = True
-
 		# get the Queryset of tags
 		result_tag = Tag.objects.filter(tname__icontains=keyword)
 		arr = []
@@ -49,6 +50,8 @@ def search_tag(request, keyword):
 def search_title(request, keyword):
 	context = {'login': False, 'search_type': 'title'}
 	if 'username' in request.session:
+		client = request.session['username']
+		context['username'] = client
 		context['login'] = True
 
 		# get the Queryset of recipe title
@@ -67,6 +70,8 @@ def search_title(request, keyword):
 def search_content(request, keyword):
 	context = {'login': False, 'search_type': 'content'}
 	if 'username' in request.session:
+		client = request.session['username']
+		context['username'] = client
 		context['login'] = True
 
 		# get the Queryset of recipe content
