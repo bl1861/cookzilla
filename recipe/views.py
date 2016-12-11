@@ -84,7 +84,7 @@ def recipe(request, id):
 						last_rwid = 0
 
 					# constrct the review model
-					review = Review(rwid = last_rwid.rwid+1, uname = User.objects.get(uname=client), rwtitle= review_title, rwcontext = review_context, rid = recipe[0])
+					review = Review(uname = User.objects.get(uname=client), rwtitle= review_title, rwcontext = review_context, rid = recipe[0])
 
 					if 'review_suggestion' :
 						review.suggestion = form.cleaned_data.get('review_suggestion')
@@ -140,7 +140,7 @@ def new_recipe(request):
 			# get current last rid
 			last_rid = Recipe.objects.all().latest('rid')
 			# construct a new created recipe
-			recipe = Recipe(rid = last_rid.rid+1 , rtitle = recipe_title, rcontent = recipe_content, rserving = recipe_servings, uname = User.objects.get(uname=client), rtime = datetime.datetime.now())
+			recipe = Recipe(rtitle = recipe_title, rcontent = recipe_content, rserving = recipe_servings, uname = User.objects.get(uname=client), rtime = datetime.datetime.now())
 
 			if 'recipe_photo':
 				recipe_photo = form.cleaned_data['recipe_photo']
@@ -170,18 +170,18 @@ def new_recipe(request):
 			last_igid = Ingredient.objects.all().latest('igid')
 
 			# save ingredient to db
-			ingredient = Ingredient(igid = last_igid.igid+1, iname = iname1, quantity = quantity1, cunit = unit1, rid = recipe)
+			ingredient = Ingredient(iname = iname1, quantity = quantity1, cunit = unit1, rid = recipe)
 			ingredient.save()
 			print('ingredient save')
 
 			if iname2 and quantity2 and unit2:
 				last_igid = Ingredient.objects.all().latest('igid')
-				ingredient = Ingredient(igid = last_igid.igid+1, iname = iname2, quantity = quantity2, cunit = unit2, rid = recipe)
+				ingredient = Ingredient(iname = iname2, quantity = quantity2, cunit = unit2, rid = recipe)
 				ingredient.save()
 
 			if iname3 and quantity3 and unit3:
 				last_igid = Ingredient.objects.all().latest('igid')
-				ingredient = Ingredient(igid = last_igid.igid+1, iname = iname3, quantity = quantity3, cunit = unit3, rid = recipe)
+				ingredient = Ingredient(iname = iname3, quantity = quantity3, cunit = unit3, rid = recipe)
 				ingredient.save()
 
 			# saven tag to db
@@ -201,7 +201,7 @@ def new_recipe(request):
 				for element in tag_list:
 					# get current last id
 					last_id = Tag.objects.all().latest('id')
-					tag = Tag(id = last_id.id+1, tname = element, rid = recipe)
+					tag = Tag(tname = element, rid = recipe)
 					tag.save()
 
 			return HttpResponseRedirect(reverse('recipes'))

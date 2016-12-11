@@ -110,6 +110,7 @@ def report(request,id):
 				rpphoto.save()
 				rpphoto.rp_photo_name = rpphoto.rp_photo.name
 				rpphoto.save()
+
 	context = {'login': True, 'dbevent': dbevent, 'event_dictionary':event_dictionary}
 
 	return HttpResponseRedirect(reverse("event",kwargs={'id': id}))
