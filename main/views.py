@@ -42,7 +42,7 @@ def home(request):
 		context['username'] = request.session['username']
 		return render(request, 'main/home.html', context);
 
-	return render(request, 'main/home.html')
+	return render(request, 'main/home.html',context)
 
 
 def login(request):

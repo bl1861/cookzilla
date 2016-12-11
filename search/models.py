@@ -221,7 +221,7 @@ class Related(models.Model):
 
 class Report(models.Model):
     rpid = models.AutoField(primary_key=True)
-    eid = models.IntegerField()
+    eid = models.ForeignKey(Event, models.DO_NOTHING, db_column='eid', related_name='report_eid')
     rdescription = models.CharField(max_length=100, blank=True, null=True)
     uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname')
 
@@ -284,7 +284,6 @@ class Tag(models.Model):
         managed = False
         db_table = 'tag'
         unique_together = (('rid', 'tname'),)
-
 
 class UserRecipeHistory(models.Model):
     uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='visit_uname')

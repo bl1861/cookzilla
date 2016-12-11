@@ -7,11 +7,6 @@ import datetime
 
 # Create your views here.
 def recipe(request, id):
-	context = {'login': False}
-	if 'username' in request.session:
-		context['login'] = True
-
-	client= request.session['username']
 
 	# create dictrionary of corresponding review & ingredient for thos recipe
 	recipe_dictionary = {}
@@ -19,17 +14,6 @@ def recipe(request, id):
 	# get Recipe
 	recipe = Recipe.objects.filter(rid = id)
 	recipe_dictionary['recipe'] = recipe
-	print(recipe[0])
-	print(User.objects.get(uname=client))
-
-	# check if this record exist in current db or not
-	record = UserRecipeHistory.objects.filter(uname = User.objects.get(uname=client), rid = recipe[0])
-
-	# if no record, save user visit recipe history
-	if not record:
-		user_recipe_history = UserRecipeHistory(uname = User.objects.get(uname=client), rid = recipe[0])
-		user_recipe_history.save()
-		print('save recipe history successfully !')
 
 	# get Review Queryset
 	reviews = Review.objects.filter(rid__rid = id)
@@ -65,48 +49,64 @@ def recipe(request, id):
 		relate_dictionary[tag] = related
 
 	recipe_dictionary['relate'] = relate_dictionary
-	context = {'account_item': 'Recipes', 'login': True , 'recipe_dictionary': recipe_dictionary}
 
-	# if this is a POST request, we need to process the form data.
-	if request.method == "POST":
-		# get username login name
+	context = {'login': False}
+
+	if 'username' in request.session:
+		context['login'] = True
 		client= request.session['username']
+		context['username'] = client
 
-		form = ReviewForm(request.POST, request.FILES)
-		if form.is_valid():
-			print('review_post_valid')
-			review_title = form.cleaned_data.get('review_title')
-			review_context = form.cleaned_data.get('review_context')
+		# check if this record exist in current db or not
+		record = UserRecipeHistory.objects.filter(uname = User.objects.get(uname=client), rid = recipe[0])
 
-			# get current last rid
-			if Review.objects.all():
-				last_rwid = Review.objects.all().latest('rwid')
-			else :
-				last_rwid = 0
+		# if no record, save user visit recipe history
+		if not record:
+			user_recipe_history = UserRecipeHistory(uname = User.objects.get(uname=client), rid = recipe[0])
+			user_recipe_history.save()
+			print('save recipe history successfully !')
 
-			# constrct the review model
-			review = Review(rwid = last_rwid.rwid+1, uname = User.objects.get(uname=client), rwtitle= review_title, rwcontext = review_context, rid = recipe[0])
+			# if this is a POST request, we need to process the form data.
+			if request.method == "POST":
+				# get username login name
+				client= request.session['username']
 
-			if 'review_suggestion' :
-				review.suggestion = form.cleaned_data.get('review_suggestion')
-			if 'review_rating' :
-				review.rating = form.cleaned_data.get('review_rating')
-			else :
-				review.rating =0
-			# save to db
-			review.save()
+				form = ReviewForm(request.POST, request.FILES)
+				if form.is_valid():
+					print('review_post_valid')
+					review_title = form.cleaned_data.get('review_title')
+					review_context = form.cleaned_data.get('review_context')
 
-			# if user attach file, get the file and save to db
-			if 'review_photo' :
-				review_photo = form.cleaned_data.get('review_photo')
-				rwphoto = ReviewPhoto(rwid = review, rw_photo = review_photo)
-				rwphoto.save()
-				rwphoto.rw_photo_name = rwphoto.rw_photo.name
-				rwphoto.save()
+					# get current last rid
+					if Review.objects.all():
+						last_rwid = Review.objects.all().latest('rwid')
+					else :
+						last_rwid = 0
 
-			return HttpResponseRedirect("/recipe/%s/" % id)
+					# constrct the review model
+					review = Review(rwid = last_rwid.rwid+1, uname = User.objects.get(uname=client), rwtitle= review_title, rwcontext = review_context, rid = recipe[0])
 
-	context['username'] = client
+					if 'review_suggestion' :
+						review.suggestion = form.cleaned_data.get('review_suggestion')
+					if 'review_rating' :
+						review.rating = form.cleaned_data.get('review_rating')
+					else :
+						review.rating =0
+					# save to db
+					review.save()
+
+					# if user attach file, get the file and save to db
+					if 'review_photo' :
+						review_photo = form.cleaned_data.get('review_photo')
+						rwphoto = ReviewPhoto(rwid = review, rw_photo = review_photo)
+						rwphoto.save()
+						rwphoto.rw_photo_name = rwphoto.rw_photo.name
+						rwphoto.save()
+
+					return HttpResponseRedirect("/recipe/%s/" % id)
+
+	context = {'account_item': 'Recipes' ,'recipe_dictionary': recipe_dictionary}
+
 	return render(request, 'recipe/recipe.html', context)
 
 

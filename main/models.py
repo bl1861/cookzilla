@@ -221,7 +221,7 @@ class Related(models.Model):
 
 class Report(models.Model):
     rpid = models.AutoField(primary_key=True)
-    eid = models.IntegerField()
+    eid = models.ForeignKey(Event, models.DO_NOTHING, db_column='eid', related_name='report_eid')
     rdescription = models.CharField(max_length=100, blank=True, null=True)
     uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname')
 
@@ -243,7 +243,7 @@ class ReportPhoto(models.Model):
 
 class Review(models.Model):
     rwid = models.AutoField(primary_key=True)
-    uname = models.CharField(max_length=50, blank=True, null=True)
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='review_uname')
     rwtitle = models.CharField(max_length=100, blank=True, null=True)
     rwcontext = models.CharField(max_length=200, blank=True, null=True)
     suggestion = models.CharField(max_length=100, blank=True, null=True)
@@ -284,3 +284,30 @@ class Tag(models.Model):
         managed = False
         db_table = 'tag'
         unique_together = (('rid', 'tname'),)
+
+class UserRecipeHistory(models.Model):
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='visit_uname')
+    rid = models.ForeignKey(Recipe, models.DO_NOTHING, db_column='rid',related_name='visit_rid')
+
+    class Meta:
+        managed = False
+        db_table = 'user_recipe_history'
+        unique_together = (('uname', 'rid'),)
+
+class UserTagHistory(models.Model):
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='tag_uname')
+    tname = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'user_tag_history'
+        unique_together = (('uname', 'tname'),)
+
+class UserKeyWordHistory(models.Model):
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='keyword_uname')
+    keyword = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'user_keyword_history'
+        unique_together = (('uname', 'keyword'),)

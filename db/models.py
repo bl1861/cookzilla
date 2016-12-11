@@ -103,7 +103,7 @@ class Related(models.Model):
 
 class Report(models.Model):
     rpid = models.AutoField(primary_key=True)
-    eid = models.IntegerField()
+    eid = models.ForeignKey(Event, models.DO_NOTHING, db_column='eid', related_name='report_eid')
     uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='report_uname')
     rdescription = models.CharField(max_length=100, blank=True, null=True)
 
