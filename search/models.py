@@ -297,7 +297,7 @@ class UserRecipeHistory(models.Model):
 
 class UserTagHistory(models.Model):
     uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='tag_uname')
-    tname = models.ForeignKey(Tag, models.DO_NOTHING, db_column='tname',related_name='tag_rid')
+    tname = models.CharField(max_length=50)
 
     class Meta:
         managed = False

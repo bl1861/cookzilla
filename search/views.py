@@ -36,18 +36,15 @@ def search_tag(request, keyword):
 		context['username'] = client
 		context['login'] = True
 
-		# check if this record exist in current db or not
-		print(keyword)
-
+		# check if this tag in Tag table or not
 		tags = Tag.objects.filter(tname=keyword)
 		if tags :
-			record = UserTagHistory.objects.filter(uname = client, tname = tags[0])
+			# check if this record exist in current db or not
+			record = UserTagHistory.objects.filter(uname = client, tname = keyword)
 
 			# if no record, save user visit tag history
 			if not record:
-				print(tags)
-				tags = Tag.objects.filter(tname=keyword)
-				user_tag_history = UserTagHistory(uname = User.objects.get(uname=client), tname = tags[0].tname)
+				user_tag_history = UserTagHistory(uname = User.objects.get(uname=client), tname = keyword)
 				user_tag_history.save()
 				print('save tag successfully !')
 
@@ -67,10 +64,14 @@ def search_title(request, keyword):
 		context['username'] = client
 		context['login'] = True
 
-		# save user search title history
-		user_key_history = UserKeyWordHistory(uname = client, keyword = keyword)
-		user_key_history.save()
-		print('save keyword successfully !')
+		# check if this record exist in current db or not
+		record = UserKeyWordHistory.objects.filter(uname = client, keyword = keyword)
+		# if no record, save user search keyword history
+		if not record:
+			# save user search title history
+			user_key_history = UserKeyWordHistory(uname = User.objects.get(uname=client), keyword = keyword)
+			user_key_history.save()
+			print('save keyword successfully !')
 
 		# get the Queryset of recipe title
 		result_title = Recipe.objects.filter(rtitle__icontains=keyword)
@@ -92,10 +93,14 @@ def search_content(request, keyword):
 		context['username'] = client
 		context['login'] = True
 
-		# save user search content history
-		user_key_history = UserKeyWordHistory(uname = client, keyword = keyword)
-		user_key_history.save()
-		print('save keyword successfully !')
+		# check if this record exist in current db or not
+		record = UserKeyWordHistory.objects.filter(uname = client, keyword = keyword)
+		# if no record, save user search keyword history
+		if not record:
+			# save user search title history
+			user_key_history = UserKeyWordHistory(uname = User.objects.get(uname=client), keyword = keyword)
+			user_key_history.save()
+			print('save keyword successfully !')
 
 		# get the Queryset of recipe content
 		result_content = Recipe.objects.filter(rcontent__icontains=keyword)

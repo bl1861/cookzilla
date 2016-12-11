@@ -204,7 +204,6 @@ def new_recipe(request):
 					tag = Tag(id = last_id.id+1, tname = element, rid = recipe)
 					tag.save()
 
-
 			return HttpResponseRedirect(reverse('recipes'))
 
 	context = {'login': True}

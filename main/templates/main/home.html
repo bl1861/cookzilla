@@ -10,53 +10,47 @@
         <h2 class="page-header">Top Recipes </h2>
 		<section>
 			<div class="row placeholders">
+
+				{% for recipe,rate in top_recipe %}
 	            <div class="col-xs-6 col-sm-4 placeholder">
-	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-	              <h4>Label</h4>
+				  {% if recipe.rphoto %}
+					<img src="{{recipe.rphoto.url}}" width="200" height="200" class="#" alt="Generic placeholder thumbnail">
+	              {% else %}
+					<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+	              {% endif %}
+				  <h4>{{recipe.rtitle}}</h4>
+				  <h5>rating : {{rate}}</h5>
 	              <span class="text-muted">Something else</span>
 	            </div>
-	            <div class="col-xs-6 col-sm-4 placeholder">
-	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-	              <h4>Label</h4>
-	              <span class="text-muted">Something else</span>
-	            </div>
-	            <div class="col-xs-6 col-sm-4 placeholder">
-	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-	              <h4>Label</h4>
-	              <span class="text-muted">Something else</span>
-	            </div>
-	            <div class="col-xs-6 col-sm-4 placeholder">
-	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-	              <h4>Label</h4>
-	              <span class="text-muted">Something else</span>
-	            </div>
-	          </div>
+				{% endfor %}
+
+			</div>
 		</section>
 		
 		{% if login %}
 		<section>
         	<h2 class="page-header">History</h2>
 			<div class="row placeholders">
+	            {% for recipe,count in most_review_recipes %}
+				<div class="col-xs-6 col-sm-4 placeholder">
+				  {% if recipe.rphoto %}
+	              <img src="{{recipe.rphoto.url}}" width="200" height="200" class="#" alt="Generic placeholder thumbnail">
+				  {% else %}
+				  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+				  {% endif %}
+				  <h4>{{recipe.rtitle}}</h4>
+				  <h5>browse : {{count}}</h5>
+	              <span class="text-muted">Something else</span>
+	            </div>
+				{% endfor %}
+
 	            <div class="col-xs-6 col-sm-4 placeholder">
 	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
 	              <h4>Label</h4>
+
 	              <span class="text-muted">Something else</span>
 	            </div>
-	            <div class="col-xs-6 col-sm-4 placeholder">
-	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-	              <h4>Label</h4>
-	              <span class="text-muted">Something else</span>
-	            </div>
-	            <div class="col-xs-6 col-sm-4 placeholder">
-	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-	              <h4>Label</h4>
-	              <span class="text-muted">Something else</span>
-	            </div>
-	            <div class="col-xs-6 col-sm-4 placeholder">
-	              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-	              <h4>Label</h4>
-	              <span class="text-muted">Something else</span>
-	            </div>
+
 	        </div>	
 		</section>	
 		{% endif %}	
