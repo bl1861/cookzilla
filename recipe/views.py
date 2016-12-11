@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import RecipeForm, ReviewForm
 from django.urls import reverse
-from .models import User, Recipe, Egroup, Event, Rsvp, Tag, Review, Ingredient, ReviewPhoto
+from .models import User, Recipe, Egroup, Event, Rsvp, Tag, Review, Ingredient, ReviewPhoto, UserRecipeHistory
 import datetime
 
 # Create your views here.
@@ -19,6 +19,17 @@ def recipe(request, id):
 	# get Recipe
 	recipe = Recipe.objects.filter(rid = id)
 	recipe_dictionary['recipe'] = recipe
+	print(recipe[0])
+	print(User.objects.get(uname=client))
+
+	# check if this record exist in current db or not
+	record = UserRecipeHistory.objects.filter(uname = User.objects.get(uname=client), rid = recipe[0])
+
+	# if no record, save user visit recipe history
+	if not record:
+		user_recipe_history = UserRecipeHistory(uname = User.objects.get(uname=client), rid = recipe[0])
+		user_recipe_history.save()
+		print('save recipe history successfully !')
 
 	# get Review Queryset
 	reviews = Review.objects.filter(rid__rid = id)

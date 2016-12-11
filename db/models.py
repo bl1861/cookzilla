@@ -165,8 +165,8 @@ class Tag(models.Model):
         unique_together = (('rid', 'tname'),)
 
 
-'''class UserRecipeHistory(models.Model):
-    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='visit_uname', blank=True, null=True)
+class UserRecipeHistory(models.Model):
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='visit_uname')
     rid = models.ForeignKey(Recipe, models.DO_NOTHING, db_column='rid',related_name='visit_rid')
 
     class Meta:
@@ -174,9 +174,17 @@ class Tag(models.Model):
         unique_together = (('uname', 'rid'),)
 
 class UserTagHistory(models.Model):
-    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='visit_uname', blank=True, null=True)
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='tag_uname')
     tname = models.ForeignKey(Tag, models.DO_NOTHING, db_column='tname',related_name='tag_rid')
 
     class Meta:
         db_table = 'user_tag_history'
-        unique_together = (('uname', 'rid'),)'''
+        unique_together = (('uname', 'tname'),)
+
+class UserKeyWordHistory(models.Model):
+    uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='keyword_uname')
+    keyword = models.CharField(max_length=50)
+
+    class Meta:
+        db_table = 'user_keyword_history'
+        unique_together = (('uname', 'keyword'),)
