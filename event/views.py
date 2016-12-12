@@ -57,10 +57,10 @@ def event(request, id):
 	return render(request, 'event/event_detail.html', context)
 
 def report(request,id):
-
 	context = {'login': False}
 	if 'username' not in request.session:
 		return HttpResponseRedirect(reverse("login"))
+
 	# get username login name
 	client = request.session['username']
 
@@ -73,6 +73,7 @@ def report(request,id):
 	reports = Report.objects.filter(eid__eid = id)
 
 	rp_dictionary = {}
+
 	for rp in reports:
 		rppicture = ReportPhoto.objects.filter(rpid__rpid = rp.rpid)
 		if rppicture :
@@ -104,13 +105,13 @@ def report(request,id):
 			report.save()
 
 			# if user attach file, get the file and save to db
-			if 'report_file' :
-				report_file = form.cleaned_data.get('report_file')
+			if 'report_pic' :
+				report_file = form.cleaned_data.get('report_pic')
 				rpphoto = ReportPhoto(rpid = report, rp_photo = report_file)
 				rpphoto.save()
 				rpphoto.rp_photo_name = rpphoto.rp_photo.name
 				rpphoto.save()
 
-	context = {'login': True, 'dbevent': dbevent, 'event_dictionary':event_dictionary}
+	#context = {'login': True, 'dbevent': dbevent, 'event_dictionary':event_dictionary}
 
 	return HttpResponseRedirect(reverse("event",kwargs={'id': id}))
