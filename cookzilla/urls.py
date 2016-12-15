@@ -26,6 +26,6 @@ urlpatterns = [
     url(r'^recipe/', include('recipe.urls')),
     url(r'^group/', include('group.urls')),
     url(r'^event/', include('event.urls')),
-    url(r'^search/', include('search.urls'))
+    url(r'^search/', include('search.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

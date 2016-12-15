@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from .forms import UserForm
 from django.urls import reverse
-from db.models import User,Conversion,Rsvp,Egroup,Event,GroupUser,Ingredient,Recipe,Related,Report,ReportPhoto,Review,ReviewPhoto,Tag
+from db.models import User,Conversion,Rsvp,Egroup,Event,GroupUser,Ingredient,Recipe,Related,Report,ReportPhoto,Review,ReviewPhoto,Tag, UserRecipeHistory
 from .forms import UploadFileForm
 from django.db import connection
 
@@ -23,23 +23,22 @@ def home(request):
 
 	context['top_recipe'] = top_recipes
 
-	# history recipes : query and count recipe review times from db
-	with connection.cursor() as cursor:
-		cursor.execute('SELECT rid,count(*) as count from user_recipe_history GROUP BY rid ORDER BY count DESC')
-		history = cursor.fetchall()
-
-	# list to store tuple (Recipe object,rate)
-	most_review_recipes = []
-	for row in history :
-		# tuple (Recipe object,rate)
-		rid_avg_rate = (Recipe.objects.get(rid=row[0]) , row[1])
-		most_review_recipes.append(rid_avg_rate)
-
-	context['most_review_recipes'] = most_review_recipes
-
 	if 'username' in request.session:
 		context['login'] = True
 		context['username'] = request.session['username']
+
+		# history recipes : query and count recipe review times from db
+		historySet = UserRecipeHistory.objects.filter(uname__uname = context['username']).order_by('-visit_time')
+
+		# list to store tuple (Recipe object,rate)
+		most_review_recipes = []
+		for row in historySet :
+			# tuple (Recipe object,UserRecipeHistory object)
+			recipe_history = (Recipe.objects.get(rid = row.rid.rid) , row)
+			most_review_recipes.append(recipe_history)
+
+		context['most_review_recipes'] = most_review_recipes
+
 		return render(request, 'main/home.html', context);
 
 	return render(request, 'main/home.html',context)
@@ -58,11 +57,11 @@ def login(request):
 
 			user = form.cleaned_data.get('username')
 			pw = form.cleaned_data.get('password')
-			dbuser = User.objects.filter(uname = user,password=pw)
 
+			# check if the username and password is in User table
+			dbuser = User.objects.filter(uname = user,password=pw)
+			# if there is a tuple in User table, add it to session table
 			if dbuser:
-				print(form.cleaned_data.get('username'))
-				print(form.cleaned_data.get('password'))
 				request.session['username'] = form.cleaned_data.get('username')
 				return HttpResponseRedirect(reverse("home"))
 

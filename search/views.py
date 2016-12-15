@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import SearchForm
 from .models import User, Tag, Recipe, UserTagHistory, UserKeyWordHistory, UserRecipeHistory
+import datetime
 
 def search(request):
 	# if this is a POST request, we need to process the form data.
@@ -44,7 +45,7 @@ def search_tag(request, keyword):
 
 			# if no record, save user visit tag history
 			if not record:
-				user_tag_history = UserTagHistory(uname = User.objects.get(uname=client), tname = keyword)
+				user_tag_history = UserTagHistory(uname = User.objects.get(uname=client), tname = keyword, tag_time = datetime.datetime.now())
 				user_tag_history.save()
 				print('save tag successfully !')
 
@@ -69,7 +70,7 @@ def search_title(request, keyword):
 		# if no record, save user search keyword history
 		if not record:
 			# save user search title history
-			user_key_history = UserKeyWordHistory(uname = User.objects.get(uname=client), keyword = keyword)
+			user_key_history = UserKeyWordHistory(uname = User.objects.get(uname=client), keyword = keyword, key_time = datetime.datetime.now())
 			user_key_history.save()
 			print('save keyword successfully !')
 
@@ -98,7 +99,7 @@ def search_content(request, keyword):
 		# if no record, save user search keyword history
 		if not record:
 			# save user search title history
-			user_key_history = UserKeyWordHistory(uname = User.objects.get(uname=client), keyword = keyword)
+			user_key_history = UserKeyWordHistory(uname = User.objects.get(uname=client), keyword = keyword, key_time = datetime.datetime.now())
 			user_key_history.save()
 			print('save keyword successfully !')
 
