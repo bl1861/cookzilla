@@ -17,8 +17,17 @@ def recipe(request, id):
 
 	# get Review Queryset
 	reviews = Review.objects.filter(rid__rid = id)
+
+	# set default rating =0
+	avg_rating = 0
+	count = 0
+
 	rw_dictionary = {}
 	for rw in reviews:
+		# calcualte average rating
+		count += 1
+		avg_rating = (avg_rating + rw.rating)/count
+		#get the review photo
 		rwpicture = ReviewPhoto.objects.filter(rwid__rwid = rw.rwid)
 		if rwpicture :
 			rw_dictionary[rw] = rwpicture[0]
@@ -51,6 +60,7 @@ def recipe(request, id):
 	recipe_dictionary['relate'] = relate_dictionary
 
 	context = {'login': False}
+	client = '____'
 
 	if 'username' in request.session:
 		context['login'] = True
@@ -62,50 +72,42 @@ def recipe(request, id):
 
 		# if no record, save user visit recipe history
 		if not record:
-			user_recipe_history = UserRecipeHistory(uname = User.objects.get(uname=client), rid = recipe[0])
+			user_recipe_history = UserRecipeHistory(uname = User.objects.get(uname=client), rid = recipe[0], visit_time = datetime.datetime.now())
 			user_recipe_history.save()
 			print('save recipe history successfully !')
 
-			# if this is a POST request, we need to process the form data.
-			if request.method == "POST":
-				# get username login name
-				client= request.session['username']
+		# if this is a POST request, we need to process the form data.
+		if request.method == "POST":
+			form = ReviewForm(request.POST, request.FILES)
+			if form.is_valid():
+				print('review_post_valid')
+				review_title = form.cleaned_data.get('review_title')
+				review_context = form.cleaned_data.get('review_context')
 
-				form = ReviewForm(request.POST, request.FILES)
-				if form.is_valid():
-					print('review_post_valid')
-					review_title = form.cleaned_data.get('review_title')
-					review_context = form.cleaned_data.get('review_context')
+				# constrct the review model
+				review = Review(uname = User.objects.get(uname=client), rwtitle= review_title, rwcontext = review_context, rid = recipe[0])
 
-					# get current last rid
-					if Review.objects.all():
-						last_rwid = Review.objects.all().latest('rwid')
-					else :
-						last_rwid = 0
+				if 'review_suggestion' :
+					review.suggestion = form.cleaned_data.get('review_suggestion')
+				if 'review_rating' :
+					review.rating = form.cleaned_data.get('review_rating')
+				else :
+					review.rating =0
+				# save to db
+				review.save()
 
-					# constrct the review model
-					review = Review(uname = User.objects.get(uname=client), rwtitle= review_title, rwcontext = review_context, rid = recipe[0])
+				# if user attach file, get the file and save to db
+				if 'review_photo' :
+					review_photo = form.cleaned_data.get('review_photo')
+					rwphoto = ReviewPhoto(rwid = review, rw_photo = review_photo)
+					rwphoto.save()
+					rwphoto.rw_photo_name = rwphoto.rw_photo.name
+					rwphoto.save()
 
-					if 'review_suggestion' :
-						review.suggestion = form.cleaned_data.get('review_suggestion')
-					if 'review_rating' :
-						review.rating = form.cleaned_data.get('review_rating')
-					else :
-						review.rating =0
-					# save to db
-					review.save()
+				return HttpResponseRedirect("/recipe/%s/" % id)
 
-					# if user attach file, get the file and save to db
-					if 'review_photo' :
-						review_photo = form.cleaned_data.get('review_photo')
-						rwphoto = ReviewPhoto(rwid = review, rw_photo = review_photo)
-						rwphoto.save()
-						rwphoto.rw_photo_name = rwphoto.rw_photo.name
-						rwphoto.save()
-
-					return HttpResponseRedirect("/recipe/%s/" % id)
-
-	context = {'account_item': 'Recipes' ,'recipe_dictionary': recipe_dictionary}
+	context = {'account_item': 'Recipes' ,'login': True, 'recipe_dictionary': recipe_dictionary, 'avg_rating':avg_rating}
+	context['username'] = client
 
 	return render(request, 'recipe/recipe.html', context)
 
@@ -137,8 +139,6 @@ def new_recipe(request):
 			quantity1 = form.cleaned_data.get('quantity1')
 			unit1 = form.cleaned_data.get('unit1')
 
-			# get current last rid
-			last_rid = Recipe.objects.all().latest('rid')
 			# construct a new created recipe
 			recipe = Recipe(rtitle = recipe_title, rcontent = recipe_content, rserving = recipe_servings, uname = User.objects.get(uname=client), rtime = datetime.datetime.now())
 
@@ -165,9 +165,7 @@ def new_recipe(request):
 			if 'tags':
 				# get the list of tag number
 				tags = form.cleaned_data.get('tags')
-
-			# get current last igid
-			last_igid = Ingredient.objects.all().latest('igid')
+				print(tags)
 
 			# save ingredient to db
 			ingredient = Ingredient(iname = iname1, quantity = quantity1, cunit = unit1, rid = recipe)
@@ -175,32 +173,35 @@ def new_recipe(request):
 			print('ingredient save')
 
 			if iname2 and quantity2 and unit2:
-				last_igid = Ingredient.objects.all().latest('igid')
+				#last_igid = Ingredient.objects.all().latest('igid')
 				ingredient = Ingredient(iname = iname2, quantity = quantity2, cunit = unit2, rid = recipe)
 				ingredient.save()
 
 			if iname3 and quantity3 and unit3:
-				last_igid = Ingredient.objects.all().latest('igid')
+				#last_igid = Ingredient.objects.all().latest('igid')
 				ingredient = Ingredient(iname = iname3, quantity = quantity3, cunit = unit3, rid = recipe)
 				ingredient.save()
 
 			# saven tag to db
-			tag_list =[]
+
 			if tags :
-				if tags[0] == '1' :
-					tag_list.append('Cake')
-				if tags[0] == '2' :
-					tag_list.append('Bread')
-				if tags[0] == '3' :
-					tag_list.append('Itali_food')
-				if tags[0] == '4' :
-					tag_list.append('Chinese_food')
-				if tags[0] == '5':
-					tag_list.append('Korea_food')
+				tag_list =[]
+				for tag in tags :
+					if tag == '1' :
+						tag_list.append('Cake')
+					if tag == '2' :
+						tag_list.append('Bread')
+					if tag == '3' :
+						tag_list.append('Itali_food')
+					if tag == '4' :
+						tag_list.append('Chinese_food')
+					if tag == '5':
+						tag_list.append('Korea_food')
 
 				for element in tag_list:
 					# get current last id
-					last_id = Tag.objects.all().latest('id')
+					#last_id = Tag.objects.all().latest('id')
+					print(element)
 					tag = Tag(tname = element, rid = recipe)
 					tag.save()
 

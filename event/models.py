@@ -288,6 +288,7 @@ class Tag(models.Model):
 class UserRecipeHistory(models.Model):
     uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='visit_uname')
     rid = models.ForeignKey(Recipe, models.DO_NOTHING, db_column='rid',related_name='visit_rid')
+    visit_time = models.DateField()
 
     class Meta:
         managed = False
@@ -297,6 +298,7 @@ class UserRecipeHistory(models.Model):
 class UserTagHistory(models.Model):
     uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='tag_uname')
     tname = models.CharField(max_length=50)
+    tag_time = models.DateField()
 
     class Meta:
         managed = False
@@ -306,6 +308,7 @@ class UserTagHistory(models.Model):
 class UserKeyWordHistory(models.Model):
     uname = models.ForeignKey(User, models.DO_NOTHING, db_column='uname',related_name='keyword_uname')
     keyword = models.CharField(max_length=50)
+    key_time = models.DateField()
 
     class Meta:
         managed = False

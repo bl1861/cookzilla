@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'cookzilla.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cook_final',
+        'NAME': 'cook_db',
         'USER': 'mjwei',
         'PASSWORD': '',
         'HOST': 'localhost',

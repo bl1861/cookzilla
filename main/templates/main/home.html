@@ -16,7 +16,7 @@
 				  {% if recipe.rphoto %}
 					<a href="/recipe/{{recipe.rid}}"><img src="{{recipe.rphoto.url}}" width="200" height="200" class="#" alt="Generic placeholder thumbnail"></a>
 	              {% else %}
-					<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+					<a href="/recipe/{{recipe.rid}}"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"></a>
 	              {% endif %}
 				  <h4>{{recipe.rtitle}}</h4>
 				  <h5>rating : {{rate}}</h5>
@@ -36,10 +36,10 @@
 				  {% if recipe.rphoto %}
 	              <a href="/recipe/{{recipe.rid}}"><img src="{{recipe.rphoto.url}}" width="200" height="200" class="#" alt="Generic placeholder thumbnail"></a>
 				  {% else %}
-				  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+				  <a href="/recipe/{{recipe.rid}}"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="#" alt="Generic placeholder thumbnail"></a>
 				  {% endif %}
 				  <h4>{{recipe.rtitle}}</h4>
-				  <h5>browse : {{count}}</h5>
+				  <h5>browse date: {{count.visit_time}}</h5>
 	              <span class="text-muted">Something else</span>
 	            </div>
 				{% endfor %}
@@ -48,6 +48,14 @@
 	        </div>	
 		</section>	
 		{% endif %}	
+
+		{% if login %}
+		<section>
+
+
+
+		</section>
+		{% endif %}
 
 	</div>
 </div>
