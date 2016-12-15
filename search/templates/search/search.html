@@ -5,7 +5,6 @@
 <div class="jumbotron">
 	<div class="container">
 		<h2>This is Search {{ search_type }} page!</h2><br>
-		<a class="btn btn-lg btn-success" href="{% url 'home' %}" role="button">Home</a>
 
 		{% if tag_set %}
 		<section>
@@ -14,7 +13,7 @@
 			<div class="margin-bottom">
 				{% for obj in tag_set %}
 				<h3><a href="/recipe/{{obj.rid.rid}}"> {{obj.rid.rtitle}}</a></h3>
-				<h4>Content is here!</h4>
+
 				{% endfor %}
 			</div>
 		</section>
@@ -27,7 +26,7 @@
 			<div class="margin-bottom">
 				{% for obj in result_title %}
 				<h3><a href="/recipe/{{obj.rid}}"> {{obj.rtitle}}</a></h3>
-				<h4>Content is here!</h4>
+
 				{% endfor %}
 			</div>
 		</section>
@@ -40,7 +39,7 @@
 			<div class="margin-bottom">
 				{% for obj in result_content %}
 				<h3><a href="/recipe/{{obj.rid}}"> {{obj.rtitle}}</a></h3>
-				<h4>Content is here!</h4>
+
 				{% endfor %}
 			</div>
 		</section>
