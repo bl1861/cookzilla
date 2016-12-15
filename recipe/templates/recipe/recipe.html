@@ -5,7 +5,7 @@
 	<div class="container">
 		<!-- Recipe Info -->
 
-		<ndif %}>
+
 		{% for key , value in recipe_dictionary.items %}
 			{% if key == "recipe" %}
 				{% for obj in value %}
@@ -31,10 +31,9 @@
 		{% endfor %}
 
 		<p>Rating:
-		{% if avg_rating %}
-			{{avg_rating}}
-		{% endif %}
+
 		</p>
+
 
 		<p>Ingredients:</p>
 		{% for key , value in recipe_dictionary.items %}
@@ -62,6 +61,7 @@
 				<h3>review title : {{k_review.rwtitle}}</h3>
 				<h4>review content : {{k_review.rwcontext}}</h4>
 				<h4>suggestion : {{k_review.suggestion}}</h4>
+				<h4>name : {{k_review.uname.uname}}</h4>
 				<h1>{{k_review.rating}}</h1>
 				<div class="row">
 					<div class="col-xs-6 col-sm-4 placeholder">
