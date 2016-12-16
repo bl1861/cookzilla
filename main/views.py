@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from .forms import UserForm
 from django.urls import reverse
-from db.models import User,Conversion,Rsvp,Egroup,Event,GroupUser,Ingredient,Recipe,Related,Report,ReportPhoto,Review,ReviewPhoto,Tag, UserRecipeHistory
+from db.models import User,Conversion,Recipe,Related,Report,ReportPhoto,Review,ReviewPhoto,Tag, UserRecipeHistory, UserTagHistory, UserKeyWordHistory
 from .forms import UploadFileForm
 from django.db import connection
 
@@ -39,6 +39,32 @@ def home(request):
 
 		context['most_review_recipes'] = most_review_recipes
 
+		# history tags : query review tags from db
+		tag_set = UserTagHistory.objects.filter(uname__uname = context['username']).order_by('-tag_time')
+
+		# dictionary to store {tag : recipe_set}
+		review_tags = {}
+		for row in tag_set :
+			# list to store recipe set
+			recipe_set = []
+			tag_group = Tag.objects.filter(tname = row.tname)
+			for tag in tag_group:
+				recipe_set.append(tag.rid)
+			review_tags[row] = recipe_set
+
+		context['review_tags'] = review_tags
+
+		# search keyword : query search keyword from db
+		keyword_set = UserKeyWordHistory.objects.filter(uname__uname = context['username']).order_by('-key_time')
+
+		# list to store search keyword set
+		review_keyword = []
+
+		for row in keyword_set :
+			review_keyword.append(row.keyword)
+
+		context['review_keyword'] = review_keyword
+
 		return render(request, 'main/home.html', context);
 
 	return render(request, 'main/home.html',context)
@@ -57,11 +83,11 @@ def login(request):
 
 			user = form.cleaned_data.get('username')
 			pw = form.cleaned_data.get('password')
-			dbuser = User.objects.filter(uname = user,password=pw)
 
+			# check if the username and password is in User table
+			dbuser = User.objects.filter(uname = user,password=pw)
+			# if there is a tuple in User table, add it to session table
 			if dbuser:
-				print(form.cleaned_data.get('username'))
-				print(form.cleaned_data.get('password'))
 				request.session['username'] = form.cleaned_data.get('username')
 				return HttpResponseRedirect(reverse("home"))
 

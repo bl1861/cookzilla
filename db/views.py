@@ -199,9 +199,10 @@ def search_5(request):
 
     result = ''
     with connection.cursor() as cursor:
-        #cursor.execute("INSERT INTO conversion VALUES('g',1)")
-        #cursor.execute("INSERT INTO conversion VALUES('ml',1)")
-        cursor.execute("UPDATE conversion set cquantity= 0.002 where cunit='pound'")
+        cursor.execute("INSERT INTO conversion VALUES('g',1)")
+        cursor.execute("INSERT INTO conversion VALUES('ml',1)")
+        cursor.execute("INSERT INTO conversion VALUES('pound',0.002)")
+        #cursor.execute("UPDATE conversion set cquantity= 0.002 where cunit='pound'")
 
     result = 'update db successfully'
 

@@ -25,11 +25,13 @@
 
 			</div>
 		</section>
-		
+
 		{% if login %}
 		<section>
         	<h2 class="page-header">History</h2>
+			<p>Recent review recipes : </p>
 			<div class="row placeholders">
+
 	            {% for recipe,count in most_review_recipes %}
 				<div class="col-xs-6 col-sm-4 placeholder">
 				  {% if recipe.rphoto %}
@@ -39,20 +41,35 @@
 				  {% endif %}
 				  <h4>{{recipe.rtitle}}</h4>
 				  <h5>browse date: {{count.visit_time}}</h5>
-
 	            </div>
 				{% endfor %}
 
-
 	        </div>	
-		</section>	
+		</section>
+
 		{% endif %}	
 
 		{% if login %}
+		<hr class="divider">
 		<section>
+			<p>Recent search tags : </p>
+			<div class="#">
+				{% for k,v in review_tags.items %}
+					<span class="btn btn-default"><a href="/search/tag/{{k.tname}}">{{k.tname}} </a></span>
+				{% endfor %}
+			</div>
+		</section>
+		<hr class="divider">
 
-
-
+		<section>
+			<p>Recent search keyword : </p>
+			<div class="#">
+				<ol class="breadcrumb">
+				{% for obj in review_keyword %}
+					<li>{{obj}} </li>
+				{% endfor %}
+				</ol>
+			</div>
 		</section>
 		{% endif %}
 
