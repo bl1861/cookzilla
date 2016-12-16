@@ -23,7 +23,7 @@ class User(models.Model):
 
 class Conversion(models.Model):
     cunit = models.CharField(primary_key=True, max_length=50)
-    cquantity = models.IntegerField(blank=True, null=True)
+    cquantity = models.FloatField(blank=True, null=True)
 
     class Meta:
         db_table = 'conversion'
