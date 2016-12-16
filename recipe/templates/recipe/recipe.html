@@ -5,7 +5,6 @@
 	<div class="container">
 		<!-- Recipe Info -->
 
-
 		{% for key , value in recipe_dictionary.items %}
 			{% if key == "recipe" %}
 				{% for obj in value %}
@@ -50,11 +49,13 @@
 					  <h4 class="btn btn-default">
 					  	<div>{{ing.iname}} </div>
 					  </h4>
+
 						<select class="selectpicker">
 							{% for k, v in unit_set.items %}
 								<option value="{{k}}{{v}}">{{v}} {{k}}</option>
 							{% endfor %}
 						</select>
+
 					</div>
 				{% endfor %}
 			{% endif %}
