@@ -59,7 +59,7 @@ def search_tag(request, keyword):
 
 
 def search_title(request, keyword):
-	context = {'login': False, 'search_type': 'title'}
+	context = {'login': False, 'search_type': 'title', 'keyword': keyword}
 	if 'username' in request.session:
 		client = request.session['username']
 		context['username'] = client
@@ -88,7 +88,7 @@ def search_title(request, keyword):
 
 
 def search_content(request, keyword):
-	context = {'login': False, 'search_type': 'content'}
+	context = {'login': False, 'search_type': 'content', 'keyword': keyword}
 	if 'username' in request.session:
 		client = request.session['username']
 		context['username'] = client
