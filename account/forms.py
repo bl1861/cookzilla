@@ -1,7 +1,4 @@
 from django import forms
- 
-class NewGroupForm(forms.Form):
-    groupname = forms.CharField(max_length=70)
 
 class UploadFileForm(forms.Form):
     signup_username = forms.CharField(max_length=50)
@@ -14,3 +11,6 @@ class UploadFileForm(forms.Form):
 class NewEventForm(forms.Form):
 	event_name = forms.CharField(max_length=50)
 	event_time = forms.DateTimeField(input_formats=["%Y/%m/%d %H:%M"])
+
+class NewGroupForm(forms.Form):
+    groupname = forms.CharField(max_length=70)

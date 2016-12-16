@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import RecipeForm, ReviewForm
 from django.urls import reverse
-from .models import User, Recipe, Egroup, Event, Rsvp, Tag, Review, Ingredient, ReviewPhoto, UserRecipeHistory
+from .models import User, Recipe, Egroup, Event, Rsvp, Tag, Review, Ingredient, ReviewPhoto, UserRecipeHistory, Conversion
 import datetime
 
 # Create your views here.
@@ -36,9 +36,24 @@ def recipe(request, id):
 
 	recipe_dictionary['review'] = rw_dictionary
 
-	# get Ingredient Queryset
+	#
+	unit_dictionary={}	
 	ingredients = Ingredient.objects.filter(rid__rid = id)
-	recipe_dictionary['ingredient'] = ingredients
+
+	unit_set = Conversion.objects.all()
+
+	for ing in ingredients:
+		ingredients_dictionary={}
+		for unit in unit_set:
+			if ing.cunit == unit.cunit:
+				ingredients_dictionary[ing.cunit] = ing.quantity
+			else:
+				ingredients_dictionary[unit.cunit] = ing.quantity*unit.cquantity
+
+		unit_dictionary[ing] = ingredients_dictionary
+
+
+	recipe_dictionary['ingredient'] = unit_dictionary
 
 	# get Tag Queryset
 	tags = Tag.objects.filter(rid__rid = id)
@@ -106,7 +121,7 @@ def recipe(request, id):
 
 				return HttpResponseRedirect("/recipe/%s/" % id)
 
-	context = {'account_item': 'Recipes' ,'login': True, 'recipe_dictionary': recipe_dictionary, 'avg_rating':avg_rating}
+	context = {'account_item': 'Recipes' ,'login': True, 'recipe_dictionary': recipe_dictionary, 'avg_rating':avg_rating, 'tags':tags}
 	context['username'] = client
 
 	return render(request, 'recipe/recipe.html', context)

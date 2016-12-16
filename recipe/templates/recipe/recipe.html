@@ -30,26 +30,32 @@
 
 		{% endfor %}
 
-		<p>Rating:</p>
+		<p>Rating : {{avg_rating}}</p>
 
+		<p>Tags:
+		{% for obj in tags %}
+			 <span class="btn btn-default">{{obj.tname}} </span>
+		{% endfor %}
+		</p>
+
+		<p>Ingredients:</p>
 		<section>
-			<p>Ingredients:</p>
-			{% for key , value in recipe_dictionary.items %}
-				{% if key == "ingredient" %}
-					{% for obj in value %}
-					  <div class="btn btn-default">
-					  	<span>{{obj.iname}} </span>
-					  	<span>{{obj.quantity}} </span>
-					  	<span>{{obj.cunit}} </span>
-					  </div>
-					  <select class="selectpicker" name='conversion'>
-		                <option value='m'>m</option>
-		                <option value='g'>g</option>
-		                <option value='pound'>pound</option>
-		              </select>
-					{% endfor %}
-				{% endif %}
-			{% endfor %}
+		{% for key , value in recipe_dictionary.items %}
+			{% if key == "ingredient" %}
+				{% for ing ,unit_set in value.items %}
+				  	<div>
+				  		<h4>{{ing.iname}}</h4>
+
+						<select class="selectpicker">
+							{% for k, v in unit_set.items %}
+								<option value="{{k}}{{v}}">{{v}} {{k}}</option>
+							{% endfor %}
+						</select>
+					</div>
+				{% endfor %}
+			{% endif %}
+		{% endfor %}
+
 		</section>
 
 		<!-- Reviews from users -->
